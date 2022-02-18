@@ -1,6 +1,6 @@
 import { gql } from "graphql-request";
 import { graphql } from "~/lib/graphql";
-import { Post as PostDto } from "~/lib/wordpress_types";
+import type { Post } from "~/types/posts";
 
 const GET_POST = gql`
   query getPost($slug: ID!) {
@@ -14,11 +14,6 @@ const GET_POST = gql`
     }
   }
 `;
-
-export type Post = {
-  slug: string;
-  title: string;
-} & PostDto;
 
 export const getPost = async ({
   slug,

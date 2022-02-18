@@ -1,6 +1,6 @@
 import { gql } from "graphql-request";
 import { graphql } from "~/lib/graphql";
-import { Post as PostDto } from "~/lib/wordpress_types";
+import type { Post } from "~/types/posts";
 
 const GET_POSTS = gql`
   {
@@ -20,11 +20,6 @@ const GET_POSTS = gql`
     }
   }
 `;
-
-export type Post = {
-  slug: string;
-  title: string;
-} & PostDto;
 
 export const getPosts = async (): Promise<{ posts: { nodes: Post[] } }> => {
   const data = await graphql.request(GET_POSTS);
