@@ -1,6 +1,7 @@
 import { Link, useLoaderData } from "remix";
 import { getPosts } from "~/api/posts/getPosts";
 import type { Post } from "~/types/posts";
+import { Typography } from "@mui/material";
 
 export const loader = async () => {
   return getPosts();
@@ -11,7 +12,7 @@ export default function Posts() {
 
   return (
     <div>
-      <h1>Posts</h1>
+      <Typography variant="h1">Posts</Typography>
       <ul>
         {posts.map((post) => (
           <li key={post.id}>
