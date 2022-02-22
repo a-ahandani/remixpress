@@ -1,4 +1,4 @@
-import { Grid, Box, Drawer } from "@mui/material";
+import { Box, Drawer } from "@mui/material";
 import type { MenuProps } from "./types";
 import { Squeeze as Hamburger } from "hamburger-react";
 import Navigation from "~/components/Menu/components/Navigation";

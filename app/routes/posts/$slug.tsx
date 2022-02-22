@@ -1,7 +1,9 @@
 import { useLoaderData } from "remix";
 import type { LoaderFunction } from "remix";
 import { getPost } from "~/api/posts/getPost";
-import { Typography, Box } from "@mui/material";
+import { Box } from "@mui/material";
+import Title from "~/components/Posts/components/Title";
+import Body from "~/components/Posts/components/Body";
 
 export const loader: LoaderFunction = async ({ params }) => {
   return getPost({ slug: params.slug as string });
@@ -12,9 +14,9 @@ export default function PostSlug() {
 
   return (
     <div>
-      <Typography variant="h1">{title}</Typography>
+      <Title variant="h1">{title}</Title>
       <Box sx={{ mt: 4 }}>
-        <Typography variant="body1">{content}</Typography>
+        <Body>{content}</Body>
       </Box>
     </div>
   );
