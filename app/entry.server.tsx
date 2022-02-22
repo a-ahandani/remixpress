@@ -3,7 +3,7 @@ import { renderToString } from "react-dom/server";
 import { RemixServer } from "remix";
 import type { EntryContext } from "remix";
 
-import createEmotionCache from "./components/Layout/createEmotionCache";
+import createEmotionCache from "./lib/create-emotion-cache";
 import theme from "./components/Layout/theme";
 
 import CssBaseline from "@mui/material/CssBaseline";

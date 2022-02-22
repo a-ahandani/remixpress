@@ -10,7 +10,7 @@ import {
 } from "remix";
 import { withEmotionCache } from "@emotion/react";
 import { unstable_useEnhancedEffect as useEnhancedEffect } from "@mui/material";
-import ClientStyleContext from "./components/Layout/ClientStyleContext";
+import ClientStyleContext from "./lib/client-style-context";
 import Layout from "./components/Layout";
 import theme from "./components/Layout/theme";
 

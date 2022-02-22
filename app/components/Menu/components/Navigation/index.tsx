@@ -1,9 +1,12 @@
 import Logo from "~/components/Logo";
-import { Grid, Box, MenuList, Fade } from "@mui/material";
+import { Grid, Box, MenuList } from "@mui/material";
 import NavLink from "./components/NavLink";
+import useLayout from "~/components/Layout/hooks/use-layout-context";
 import type { NavigationProps } from "./types";
 
-export default function Navigation({ isOpen, ...rest }: NavigationProps) {
+export default function Navigation({ ...rest }: NavigationProps) {
+  const { layoutState } = useLayout();
+  const { isMenuOpen } = layoutState;
   return (
     <Box
       {...rest}
@@ -17,9 +20,7 @@ export default function Navigation({ isOpen, ...rest }: NavigationProps) {
       <Grid sx={{ height: "100vh", width: "100vw" }} container spacing={0}>
         <Grid item xs={5}>
           <Box sx={{ p: 4, fontWeight: "bold", height: "100vh" }}>
-            <Fade in={isOpen}>
-              <Logo />
-            </Fade>
+            {isMenuOpen && <Logo />}
           </Box>
         </Grid>
         <Grid item xs={7}>
