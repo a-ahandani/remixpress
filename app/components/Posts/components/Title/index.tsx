@@ -8,7 +8,12 @@ export default function Title({ children, to, sx, ...rest }: TitleProps) {
       {...(to && { component: Link, to })}
       variant="h4"
       {...rest}
-      sx={{ textDecoration: "none", ...sx }}
+      sx={{
+        textDecoration: "none",
+        color: (theme) => theme.palette.common.black,
+        pb: 0,
+        ...sx,
+      }}
     >
       {children}
     </Typography>

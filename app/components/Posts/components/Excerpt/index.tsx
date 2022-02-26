@@ -1,5 +1,4 @@
 import { Box } from "@mui/material";
-import { Link } from "remix";
 
 import Body from "~/components/Posts/components/Body";
 import Title from "~/components/Posts/components/Title";
