@@ -4,16 +4,18 @@ import { domToReact } from "html-react-parser";
 
 import type { CodeBlockProps } from "./types";
 export default function CodeBlock({ node }: CodeBlockProps) {
-  const language = node?.attribs?.lang;
+  const { attribs, children } = node;
+  const { lang } = attribs;
+
   return (
     <SyntaxHighlighter
       style={xonokai}
       showLineNumbers
       showInlineLineNumbers
       wrapLines
-      language={language}
+      language={lang}
     >
-      {domToReact(node.children)}
+      {domToReact(children)}
     </SyntaxHighlighter>
   );
 }

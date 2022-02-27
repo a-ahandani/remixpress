@@ -3,8 +3,7 @@ import type { MediaProps } from "./types";
 import { domToReact } from "html-react-parser";
 
 export default function Media({ node }: MediaProps) {
-  const children = node.children;
-
+  const { children } = node;
   return (
     <Card
       sx={{

@@ -3,6 +3,7 @@ import { domToReact } from "html-react-parser";
 
 import type { BlockquoteProps } from "./types";
 export default function Blockquote({ node }: BlockquoteProps) {
+  const { children } = node;
   return (
     <Typography
       sx={{
@@ -11,7 +12,7 @@ export default function Blockquote({ node }: BlockquoteProps) {
         backgroundColor: ({ palette }) => palette.grey[100],
       }}
     >
-      {domToReact(node.children)}
+      {domToReact(children)}
     </Typography>
   );
 }

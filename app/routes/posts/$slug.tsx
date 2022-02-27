@@ -11,7 +11,7 @@ export const loader: LoaderFunction = async ({ params }) => {
 
 export default function PostSlug() {
   const { title, content, ...rest } = useLoaderData();
-  console.log(rest);
+
   return (
     <div>
       <Title variant="h1">{title}</Title>
