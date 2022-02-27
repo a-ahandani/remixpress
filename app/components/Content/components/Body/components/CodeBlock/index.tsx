@@ -1,10 +1,10 @@
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { xonokai } from "react-syntax-highlighter/dist/cjs/styles/prism";
+import { domToReact } from "html-react-parser";
 
 import type { CodeBlockProps } from "./types";
-export default function CodeBlock({ node, children }: CodeBlockProps) {
+export default function CodeBlock({ node }: CodeBlockProps) {
   const language = node?.attribs?.lang;
-
   return (
     <SyntaxHighlighter
       style={xonokai}
@@ -13,7 +13,7 @@ export default function CodeBlock({ node, children }: CodeBlockProps) {
       wrapLines
       language={language}
     >
-      {children}
+      {domToReact(node.children)}
     </SyntaxHighlighter>
   );
 }

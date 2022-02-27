@@ -1,6 +1,8 @@
 import { Typography } from "@mui/material";
+import { domToReact } from "html-react-parser";
+
 import type { BlockquoteProps } from "./types";
-export default function Blockquote({ node, children }: BlockquoteProps) {
+export default function Blockquote({ node }: BlockquoteProps) {
   return (
     <Typography
       sx={{
@@ -9,7 +11,7 @@ export default function Blockquote({ node, children }: BlockquoteProps) {
         backgroundColor: ({ palette }) => palette.grey[100],
       }}
     >
-      {children}
+      {domToReact(node.children)}
     </Typography>
   );
 }
