@@ -11,6 +11,22 @@ const GET_POST = gql`
       uri
       content
       date
+      comments(first: 100) {
+        nodes {
+          id
+          content
+          parentId
+          date
+          dateGmt
+          replies {
+            edges {
+              node {
+                id
+              }
+            }
+          }
+        }
+      }
     }
   }
 `;

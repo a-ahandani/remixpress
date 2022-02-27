@@ -25,7 +25,7 @@ export default function Layout({ children }: { children: ReactNode }) {
               </Box>
             </Toolbar>
           </AppBar>
-          <Container>
+          <Container maxWidth="md">
             <Box sx={{ my: 4 }}>{children}</Box>
           </Container>
         </Box>

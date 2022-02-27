@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import { SyntaxHighlighterProps } from "react-syntax-highlighter";
-import type { BlockComponentBaseProps } from "~/components/Posts/components/Body";
+import type { BlockComponentBaseProps } from "~/components/Content/components/Body";
 
 export type CodeBlockProps = BlockComponentBaseProps &
   SyntaxHighlighterProps & {

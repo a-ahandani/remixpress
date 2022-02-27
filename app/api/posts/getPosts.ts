@@ -16,6 +16,9 @@ const GET_POSTS = gql`
             id
           }
         }
+        commentCount
+        date
+        dateGmt
       }
     }
   }

@@ -1,8 +1,9 @@
 import { ReactNode, ReactElement } from "react";
 
 import { Typography } from "@mui/material";
-import CodeBlock from "~/components/Posts/components/Body/components/CodeBlock";
-import Blockquote from "~/components/Posts/components/Body/components/Blockquote";
+import CodeBlock from "~/components/Content/components/Body/components/CodeBlock";
+import Blockquote from "~/components/Content/components/Body/components/Blockquote";
+import Image from "~/components/Content/components/Body/components/Image";
 import parse, { domToReact, Element, DOMNode } from "html-react-parser";
 import type { BodyProps } from "./types";
 
@@ -18,6 +19,7 @@ export type BlockComponentBaseTypes = (
 enum BLOCK_KEYS {
   CODE = "code",
   BLOCKQUOTE = "blockquote",
+  IMAGE = "img",
 }
 
 const BLOCK_COMPONENTS: {
@@ -25,6 +27,7 @@ const BLOCK_COMPONENTS: {
 } = {
   [BLOCK_KEYS.CODE]: CodeBlock,
   [BLOCK_KEYS.BLOCKQUOTE]: Blockquote,
+  [BLOCK_KEYS.IMAGE]: Image,
 };
 
 export default function Body({ body, children, ...rest }: BodyProps) {
@@ -50,11 +53,9 @@ export default function Body({ body, children, ...rest }: BodyProps) {
       const RenderComponent = BLOCK_COMPONENTS[node.name];
 
       return (
-        node.children.length > 0 && (
-          <RenderComponent node={node}>
-            {domToReact(getContent(node))}
-          </RenderComponent>
-        )
+        <RenderComponent node={node}>
+          {domToReact(getContent(node))}
+        </RenderComponent>
       );
     }
   };
