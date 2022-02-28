@@ -1,6 +1,6 @@
 import { ReactElement } from "react";
 
-import { Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import CodeBlock from "~/components/Content/components/Body/components/CodeBlock";
 import Blockquote from "~/components/Content/components/Body/components/Blockquote";
 import Image from "~/components/Content/components/Body/components/Image";
@@ -61,12 +61,20 @@ export default function Body({ body, children, ...rest }: BodyProps) {
   };
 
   return (
-    <Typography
-      variant="body1"
+    <Box
       {...rest}
-      sx={{ "& .more-link": { display: "none" } }}
+      sx={{
+        "& p": ({ typography }) => ({ ...typography.body1 }),
+        "& a": ({ palette }) => ({
+          textDecoration: "none",
+          color: palette.primary.main,
+        }),
+        "& .more-link": {
+          display: "none",
+        },
+      }}
     >
       {parse(content, { replace: replaceCode })}
-    </Typography>
+    </Box>
   );
 }

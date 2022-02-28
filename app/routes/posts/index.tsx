@@ -10,7 +10,7 @@ export const loader = async () => {
 
 export default function Posts() {
   const posts = useLoaderData<Post[]>();
-  console.log("-->", posts);
+
   return (
     <div>
       <Typography variant="h1">Posts</Typography>

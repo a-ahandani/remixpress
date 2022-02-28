@@ -1,5 +1,7 @@
 import { useLoaderData } from "remix";
+
 import type { LoaderFunction } from "remix";
+
 import { getPost } from "~/api/posts/getPost";
 import { Box } from "@mui/material";
 import Title from "~/components/Content/components/Title";
