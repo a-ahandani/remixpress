@@ -1,6 +1,7 @@
-import { useLoaderData } from "remix";
-
+import { useLoaderData, Link as RmxLink } from "remix";
+import { SvgIcon, Button } from "@mui/material";
 import type { LoaderFunction } from "remix";
+import { ArrowBackOutlined } from "@mui/icons-material";
 
 import { getPost } from "~/api/posts/getPost";
 import { Box } from "@mui/material";
@@ -16,7 +17,17 @@ export default function PostSlug() {
 
   return (
     <div>
-      <Title variant="h1">{title}</Title>
+      <Button
+        component={RmxLink}
+        disableRipple
+        variant="text"
+        to={"/posts"}
+        startIcon={<ArrowBackOutlined />}
+      >
+        Back to blog
+      </Button>
+
+      <Title variant="h2">{title}</Title>
       <Box sx={{ mt: 4 }}>
         <Body>{content}</Body>
       </Box>
