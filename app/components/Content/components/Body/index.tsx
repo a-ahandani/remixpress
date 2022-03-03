@@ -47,7 +47,7 @@ const BLOCK_COMPONENTS: {
   // [BLOCK_KEYS.P]: Heading,
 };
 
-export default function Body({ body, children, ...rest }: BodyProps) {
+export default function Body({ body, children, sx, ...rest }: BodyProps) {
   const content = body || children || "";
 
   const replaceCode = (node: DOMNode) => {
@@ -64,7 +64,6 @@ export default function Body({ body, children, ...rest }: BodyProps) {
     <Box
       {...rest}
       sx={{
-        "& p": ({ typography }) => ({ ...typography.body1 }),
         "& a": ({ palette }) => ({
           textDecoration: "none",
           color: palette.primary.main,
@@ -72,6 +71,7 @@ export default function Body({ body, children, ...rest }: BodyProps) {
         "& .more-link": {
           display: "none",
         },
+        ...sx,
       }}
     >
       {parse(content, { replace: replaceCode })}
