@@ -9,6 +9,10 @@ import ApercuBoldWoff2 from "~/resources/fonts/apercu_bold-webfont.woff2";
 const theme = createTheme({
   typography: {
     fontFamily: "apercu, Arial",
+    body1: {
+      fontSize: "1.0625rem",
+      lineHeight: "1.7",
+    },
   },
   components: {
     MuiCssBaseline: {

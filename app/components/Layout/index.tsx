@@ -5,17 +5,16 @@ import Logo from "~/components/Logo";
 import LayoutProvider from "~/components/Layout/components/LayoutProvider";
 import { Container, AppBar, Toolbar, Box, LinearProgress } from "@mui/material";
 import Menu from "~/components/Menu";
-
+const MENU_WIDTH = 80;
 export default function Layout({ children }: { children: ReactNode }) {
   const { location, state, submission, type } = useTransition();
 
-  console.log("render", location, state, submission, type);
   const isLoading = state === "loading";
   return (
     <LayoutProvider defaultLayoutState={{ isMenuOpen: false }}>
       <Box>
-        <Menu />
-        <Box sx={{ width: "calc(100vw - 100px)" }}>
+        <Menu width={MENU_WIDTH} />
+        <Box sx={{ width: `calc(100vw - ${MENU_WIDTH}px)` }}>
           <AppBar position="static" color="transparent" elevation={0}>
             <Toolbar
               sx={{

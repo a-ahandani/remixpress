@@ -1,1 +1,3 @@
-export type MenuProps = {};
+export type MenuProps = {
+  width: number;
+};

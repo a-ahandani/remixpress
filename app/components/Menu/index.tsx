@@ -4,7 +4,7 @@ import { Squeeze as Hamburger } from "hamburger-react";
 import Navigation from "~/components/Menu/components/Navigation";
 import useLayout from "~/components/Layout/hooks/use-layout-context";
 
-export default function Menu({ ...rest }: MenuProps) {
+export default function Menu({ width }: MenuProps) {
   const { layoutState, setLayoutState } = useLayout();
   const { isMenuOpen } = layoutState;
 
@@ -29,7 +29,7 @@ export default function Menu({ ...rest }: MenuProps) {
               }),
           }),
           ...(!isMenuOpen && {
-            width: 90,
+            width: width,
             transition: (theme) =>
               theme.transitions.create("width", {
                 easing: theme.transitions.easing.sharp,
@@ -45,11 +45,15 @@ export default function Menu({ ...rest }: MenuProps) {
       <Box
         sx={{
           position: "fixed",
-          right: 24,
+          right: (width - 48) / 2,
           top: 24,
         }}
       >
-        <Hamburger toggled={isMenuOpen} toggle={handleToggleMenu} size={33} />
+        <Hamburger
+          toggled={isMenuOpen}
+          toggle={handleToggleMenu}
+          size={width / 2.8}
+        />
       </Box>
       <Box>
         <Navigation />
