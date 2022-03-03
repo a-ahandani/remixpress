@@ -8,6 +8,7 @@
     "@emotion/react": "latest",
     "@emotion/server": "latest",
     "@emotion/styled": "latest",
+    "@mui/icons-material": "^5.4.4",
     "@mui/material": "latest",
     "@remix-run/react": "^1.2.1",
     "@remix-run/serve": "^1.2.1",
