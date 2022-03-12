@@ -1,6 +1,6 @@
 import type { Post } from "~/types/posts";
+import { AtLeastOne } from "~/types/utils";
 
-export type ExcerptProps = Post & {
-  excerpt: string;
-  id: string;
-};
+export type BaseExcerptProps = Post & {};
+
+export type ExcerptProps = AtLeastOne<BaseExcerptProps>;

@@ -11,7 +11,6 @@ export default function Excerpt({
   commentCount,
   date,
   dateGmt,
-  ...rest
 }: ExcerptProps) {
   var day = dayjs(date);
   return (
@@ -21,7 +20,7 @@ export default function Excerpt({
       </Typography>
       <br />
       <Title to={slug}>{title}</Title>
-      <Body>{excerpt}</Body>
+      {excerpt && <Body>{excerpt}</Body>}
       {commentCount && `comments: ${commentCount}`}
     </Box>
   );

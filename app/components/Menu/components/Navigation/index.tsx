@@ -1,6 +1,7 @@
 import Logo from "~/components/Logo";
 import { alpha } from "@mui/material/styles";
 import { Grid, Box, MenuList } from "@mui/material";
+import bgImage from "~/resources/images/hip-square.png";
 import NavLink from "./components/NavLink";
 import useLayout from "~/components/Layout/hooks/use-layout-context";
 import type { NavigationProps } from "./types";
@@ -27,11 +28,12 @@ export default function Navigation({ ...rest }: NavigationProps) {
         <Grid item xs={7}>
           <Box
             sx={{
-              background: (theme) =>
+              backgroundColor: (theme) =>
                 alpha(
                   theme.palette.primary.main,
                   theme.palette.action.selectedOpacity
                 ),
+              background: `url(${bgImage})`,
               height: "100vh",
               display: "flex",
               alignContent: "center",

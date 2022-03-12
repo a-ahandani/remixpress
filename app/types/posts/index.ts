@@ -4,3 +4,10 @@ export type Post = {
   slug: string;
   title: string;
 } & PostDto;
+
+export type Query = {
+  first?: number;
+  last?: number;
+  after?: string;
+  before?: string;
+};

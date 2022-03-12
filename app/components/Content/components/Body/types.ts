@@ -1,9 +1,10 @@
-export type AtLeastOne<T, U = { [K in keyof T]: Pick<T, K> }> = Partial<T> &
-  U[keyof U];
+import { SxProps } from "@mui/system";
+import { AtLeastOne } from "~/types/utils";
 
 type BaseBodyProps = {
   body: string;
-  children: string;
+  children?: string;
+  sx?: SxProps;
 };
 
 export type BodyProps = AtLeastOne<BaseBodyProps>;
