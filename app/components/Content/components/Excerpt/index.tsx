@@ -20,8 +20,8 @@ export default function Excerpt({
       </Typography>
       <br />
       <Title to={slug}>{title}</Title>
-      {excerpt && <Body>{excerpt}</Body>}
-      {commentCount && `comments: ${commentCount}`}
+      {/* {excerpt && <Body>{excerpt}</Body>}
+      {commentCount && `comments: ${commentCount}`} */}
     </Box>
   );
 }

@@ -1,4 +1,4 @@
-import { ReactNode, useContext } from "react";
+import { ReactNode, useContext, useMemo } from "react";
 import {
   Links,
   LiveReload,
@@ -8,6 +8,15 @@ import {
   ScrollRestoration,
   useCatch,
 } from "remix";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  useNavigate,
+  useLocation,
+  To,
+} from "react-router-dom";
+import { QueryParamProvider } from "use-query-params";
 import { withEmotionCache } from "@emotion/react";
 import { unstable_useEnhancedEffect as useEnhancedEffect } from "@mui/material";
 import ClientStyleContext from "./lib/client-style-context";
@@ -64,11 +73,35 @@ const Document = withEmotionCache(
   }
 );
 
+const RouteAdapter: React.FC = ({ children }) => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const adaptedHistory = useMemo(
+    () => ({
+      replace(location: any) {
+        navigate(location, { replace: true, state: location.state });
+      },
+      push(location: any) {
+        navigate(location, { replace: false, state: location.state });
+      },
+    }),
+    [navigate]
+  );
+  // https://github.com/pbeshai/use-query-params/issues/196
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+  return children({ history: adaptedHistory, location });
+};
+
 export default function App() {
   return (
     <Document>
       <Layout>
-        <Outlet />
+        <QueryParamProvider ReactRouterRoute={RouteAdapter}>
+          <Outlet />
+        </QueryParamProvider>
       </Layout>
     </Document>
   );

@@ -31,11 +31,15 @@ const GET_POSTS = gql`
 `;
 
 export const getPosts = async ({
-  first,
-  last,
+  limit = 5,
   after,
   before,
 }: Query): Promise<{ posts: { nodes: Post[] } }> => {
-  const data = await graphql.request(GET_POSTS, { first, last, after, before });
+  const data = await graphql.request(GET_POSTS, {
+    first: after ? limit : before ? null : limit,
+    last: before ? limit : null,
+    after,
+    before,
+  });
   return data.posts;
 };

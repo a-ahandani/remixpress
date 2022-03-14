@@ -24,7 +24,8 @@
     "react-dom": "^17.0.2",
     "react-syntax-highlighter": "^15.4.5",
     "remix": "^1.2.2",
-    "tslib": "^2.3.1"
+    "tslib": "^2.3.1",
+    "use-query-params": "^1.2.3"
   },
   "devDependencies": {
     "@remix-run/dev": "^1.2.1",
@@ -39,7 +40,7 @@
   },
   "sideEffects": false,
   "scripts": {
-    "postinstall": "remix setup node",
+    "postinstall": "remix setup cloudflare-pages",
     "build": "cross-env NODE_ENV=production remix build",
     "dev": "cross-env NODE_ENV=development remix dev",
     "start": "cross-env NODE_ENV=production remix-serve build"

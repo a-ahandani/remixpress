@@ -3,9 +3,24 @@ import { getPosts } from "~/api/posts/getPosts";
 import qs from "query-string";
 import type { Post, Query } from "~/types/posts";
 import type { LoaderFunction } from "remix";
+import {
+  useQueryParams,
+  NumberParam,
+  StringParam,
+  withDefault,
+} from "use-query-params";
+
 import Excerpt from "~/components/Content/components/Excerpt";
 import { useSearchParams } from "react-router-dom";
-import { Typography, FormControl, InputLabel, Select } from "@mui/material";
+
+import {
+  Typography,
+  FormControl,
+  InputLabel,
+  Select,
+  ButtonGroup,
+  Button,
+} from "@mui/material";
 
 export const loader: LoaderFunction = async ({ request }) => {
   const url = new URL(request.url);
@@ -14,9 +29,25 @@ export const loader: LoaderFunction = async ({ request }) => {
 };
 
 export default function Posts() {
-  const { nodes, pageInfo } = useLoaderData<{ nodes: Post[]; pageInfo: {} }>();
+  const { nodes, pageInfo } = useLoaderData<{
+    nodes: Post[];
+    pageInfo: {
+      endCursor?: string;
+      hasNextPage: boolean;
+      hasPreviousPage: boolean;
+      startCursor: string;
+    };
+  }>();
+
+  const { endCursor, hasNextPage, hasPreviousPage, startCursor } = pageInfo;
+
   const pagingOptions = [5, 10, 15, 20];
-  const [searchParams, setSearchParams] = useSearchParams();
+
+  const [query, setQuery] = useQueryParams({
+    limit: NumberParam,
+    after: StringParam,
+    before: StringParam,
+  });
 
   return (
     <div>
@@ -27,13 +58,15 @@ export default function Posts() {
         ))}
       </div>
       <FormControl sx={{ m: 1, minWidth: 120 }}>
-        <InputLabel htmlFor="grouped-native-select">Grouping</InputLabel>
+        <InputLabel htmlFor="grouped-native-select">Page size</InputLabel>
         <Select
           native
           defaultValue={5}
+          size="small"
+          value={query.limit}
           onChange={(e) => {
-            const limit = String(e.target.value);
-            setSearchParams({ limit });
+            const limit = Number(e.target.value);
+            setQuery({ before: undefined, after: undefined, limit });
           }}
           label="Page size"
         >
@@ -43,6 +76,31 @@ export default function Posts() {
             </option>
           ))}
         </Select>
+
+        <ButtonGroup variant="text" aria-label="text button group">
+          <Button
+            disabled={!hasPreviousPage}
+            onClick={() => {
+              setQuery({
+                before: startCursor,
+                after: undefined,
+              });
+            }}
+          >
+            Previous
+          </Button>
+          <Button
+            disabled={!hasNextPage}
+            onClick={() => {
+              setQuery({
+                after: endCursor,
+                before: undefined,
+              });
+            }}
+          >
+            Next
+          </Button>
+        </ButtonGroup>
       </FormControl>
     </div>
   );

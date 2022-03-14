@@ -6,8 +6,7 @@ export type Post = {
 } & PostDto;
 
 export type Query = {
-  first?: number;
-  last?: number;
-  after?: string;
-  before?: string;
+  limit?: number | null;
+  after?: string | null;
+  before?: string | null;
 };
