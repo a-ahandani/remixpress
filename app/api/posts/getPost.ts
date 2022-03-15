@@ -18,10 +18,34 @@ const GET_POST = gql`
           parentId
           date
           dateGmt
+          author {
+            node {
+              avatar {
+                foundAvatar
+                default
+                size
+                url
+              }
+              name
+              id
+            }
+          }
           replies {
-            edges {
-              node {
-                id
+            nodes {
+              id
+              date
+              content
+              author {
+                node {
+                  avatar {
+                    foundAvatar
+                    default
+                    size
+                    url
+                  }
+                  name
+                  id
+                }
               }
             }
           }
