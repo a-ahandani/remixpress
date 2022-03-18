@@ -1,8 +1,10 @@
 import { gql } from "graphql-request";
 import { graphql } from "~/lib/graphql";
 import type { Post } from "~/types/posts";
+import { COMMENT } from "../queries";
 
 const GET_POST = gql`
+  ${COMMENT}
   query getPost($slug: ID!) {
     post(id: $slug, idType: SLUG) {
       id
@@ -11,40 +13,21 @@ const GET_POST = gql`
       uri
       content
       date
-      comments(first: 100) {
+      comments(first: 100, where: { parent: null }) {
+        # Get three levels of comments reply
         nodes {
-          id
-          content
-          parentId
-          date
-          dateGmt
-          author {
-            node {
-              avatar {
-                foundAvatar
-                default
-                size
-                url
-              }
-              name
-              id
-            }
-          }
+          ...comment
           replies {
             nodes {
-              id
-              date
-              content
-              author {
-                node {
-                  avatar {
-                    foundAvatar
-                    default
-                    size
-                    url
+              ...comment
+              replies {
+                nodes {
+                  ...comment
+                  replies {
+                    nodes {
+                      ...comment
+                    }
                   }
-                  name
-                  id
                 }
               }
             }

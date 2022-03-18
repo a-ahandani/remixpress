@@ -1,7 +1,7 @@
 import {
   Post as PostDto,
-  Comment as CommentDto,
   PostToCommentConnection,
+  CommentToCommentConnection,
   Maybe,
 } from "~/types/wordpress_types";
 
@@ -16,4 +16,6 @@ export type Query = {
   before?: string | null;
 };
 
-export type Comments = Maybe<PostToCommentConnection>;
+export type Comments =
+  | Maybe<PostToCommentConnection>
+  | Maybe<CommentToCommentConnection>;

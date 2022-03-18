@@ -14,7 +14,7 @@ export default function Comments({
   const authorImage = author?.node?.url || "";
 
   return (
-    <Box className="comment-box" sx={{ borderTop: "1px solid red" }}>
+    <Box className="comment-box">
       <Box sx={{ display: "flex", alignItems: "center", p: 1 }}>
         <Avatar name={authorName} image={authorImage} size={authorImageSize} />
         <Box sx={{ display: "flex", flexDirection: "column", p: 1 }}>
