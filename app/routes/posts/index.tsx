@@ -3,15 +3,9 @@ import { getPosts } from "~/api/posts/getPosts";
 import qs from "query-string";
 import type { Post, Query } from "~/types/posts";
 import type { LoaderFunction } from "remix";
-import {
-  useQueryParams,
-  NumberParam,
-  StringParam,
-  withDefault,
-} from "use-query-params";
+import { useQueryParams, NumberParam, StringParam } from "use-query-params";
 
 import Excerpt from "~/components/Content/components/Excerpt";
-import { useSearchParams } from "react-router-dom";
 
 import {
   Typography,

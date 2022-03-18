@@ -1,11 +1,11 @@
 import { useLoaderData, Link as RmxLink } from "remix";
-import { SvgIcon, Button } from "@mui/material";
+import { Button, Typography, Box } from "@mui/material";
 import type { LoaderFunction } from "remix";
 import { ArrowBackOutlined } from "@mui/icons-material";
-
+import type { Post } from "~/types/posts";
 import { getPost } from "~/api/posts/getPost";
-import { Box } from "@mui/material";
 import Title from "~/components/Content/components/Title";
+import Comments from "~/components/Content/components/Comments";
 import Body from "~/components/Content/components/Body";
 
 export const loader: LoaderFunction = async ({ params }) => {
@@ -13,7 +13,7 @@ export const loader: LoaderFunction = async ({ params }) => {
 };
 
 export default function PostSlug() {
-  const { title, content, ...rest } = useLoaderData();
+  const { title, content, comments } = useLoaderData<Post>();
 
   return (
     <div>
@@ -28,9 +28,8 @@ export default function PostSlug() {
       </Button>
 
       <Title variant="h2">{title}</Title>
-      <Box sx={{ mt: 4 }}>
-        <Body>{content}</Body>
-      </Box>
+      <Body>{content}</Body>
+      <Comments comments={comments} />
     </div>
   );
 }

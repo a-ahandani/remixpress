@@ -74,7 +74,7 @@ export default function Body({ body, children, sx, ...rest }: BodyProps) {
         ...sx,
       }}
     >
-      {parse(content, { replace: replaceCode })}
+      {parse(String(content), { replace: replaceCode })}
     </Box>
   );
 }

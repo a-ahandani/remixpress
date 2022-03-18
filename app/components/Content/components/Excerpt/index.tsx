@@ -1,7 +1,7 @@
 import { Box, Typography } from "@mui/material";
-import dayjs from "dayjs";
 import Body from "~/components/Content/components/Body";
 import Title from "~/components/Content/components/Title";
+import Date from "~/components/Date";
 
 import type { ExcerptProps } from "./types";
 export default function Excerpt({
@@ -10,18 +10,13 @@ export default function Excerpt({
   excerpt,
   commentCount,
   date,
-  dateGmt,
 }: ExcerptProps) {
-  var day = dayjs(date);
   return (
     <Box sx={{ mt: 4, ml: 3 }}>
-      <Typography variant="caption">
-        {day.format("dddd, MMM DD, YYYY")}
-      </Typography>
-      <br />
+      <Date date={date} />
       <Title to={slug}>{title}</Title>
-      {/* {excerpt && <Body>{excerpt}</Body>}
-      {commentCount && `comments: ${commentCount}`} */}
+      {excerpt && <Body>{excerpt}</Body>}
+      {commentCount && `comments: ${commentCount}`}
     </Box>
   );
 }

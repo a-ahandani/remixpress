@@ -1,6 +1,5 @@
 import type { Post } from "~/types/posts";
-import { AtLeastOne } from "~/types/utils";
-
-export type BaseExcerptProps = Post & {};
-
-export type ExcerptProps = AtLeastOne<BaseExcerptProps>;
+export type ExcerptProps = Pick<
+  Post,
+  "slug" | "commentCount" | "excerpt" | "title" | "date"
+> & {};

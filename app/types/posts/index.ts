@@ -1,4 +1,9 @@
-import { Post as PostDto } from "~/types/wordpress_types";
+import {
+  Post as PostDto,
+  Comment as CommentDto,
+  PostToCommentConnection,
+  Maybe,
+} from "~/types/wordpress_types";
 
 export type Post = {
   slug: string;
@@ -10,3 +15,5 @@ export type Query = {
   after?: string | null;
   before?: string | null;
 };
+
+export type Comments = Maybe<PostToCommentConnection>;
