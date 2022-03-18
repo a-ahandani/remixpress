@@ -4,45 +4,46 @@
   "description": "",
   "license": "",
   "dependencies": {
-    "@emotion/cache": "latest",
-    "@emotion/react": "latest",
-    "@emotion/server": "latest",
-    "@emotion/styled": "latest",
-    "@mui/icons-material": "^5.4.4",
-    "@mui/material": "latest",
-    "@remix-run/react": "^1.2.1",
-    "@remix-run/serve": "^1.2.1",
+    "@emotion/cache": "^11.7.1",
+    "@emotion/react": "^11.8.2",
+    "@emotion/server": "^11.4.0",
+    "@emotion/styled": "^11.8.1",
+    "@mui/icons-material": "^5.5.1",
+    "@mui/material": "^5.5.1",
+    "@remix-run/react": "^1.3.2",
+    "@remix-run/serve": "^1.3.2",
     "cross-env": "^7.0.3",
-    "dayjs": "^1.10.7",
+    "dayjs": "^1.11.0",
     "dotenv": "^16.0.0",
-    "graphql-request": "^4.0.0",
+    "graphql-request": "^4.1.0",
     "hamburger-react": "^2.4.1",
     "html-react-parser": "^1.4.8",
     "lodash": "^4.17.21",
     "query-string": "^7.1.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-syntax-highlighter": "^15.4.5",
-    "remix": "^1.2.2",
+    "react-syntax-highlighter": "^15.5.0",
+    "remix": "^1.3.2",
     "tslib": "^2.3.1",
     "use-query-params": "^1.2.3"
   },
   "devDependencies": {
-    "@remix-run/dev": "^1.2.1",
-    "@types/lodash": "^4.14.178",
-    "@types/react": "^17.0.24",
-    "@types/react-dom": "^17.0.9",
+    "@remix-run/dev": "^1.3.2",
+    "@types/lodash": "^4.14.180",
+    "@types/react": "^17.0.40",
+    "@types/react-dom": "^17.0.13",
     "@types/react-syntax-highlighter": "^13.5.2",
-    "typescript": "^4.1.2"
+    "typescript": "^4.5.4"
   },
   "engines": {
     "node": ">=14"
   },
   "sideEffects": false,
   "scripts": {
-    "postinstall": "remix setup cloudflare-pages",
-    "build": "cross-env NODE_ENV=production remix build",
-    "dev": "cross-env NODE_ENV=development remix dev",
-    "start": "cross-env NODE_ENV=production remix-serve build"
+    "build": "remix build",
+    "dev": "remix dev",
+    "typecheck": "tsc -b",
+    "postinstall": "remix setup node",
+    "start": "remix-serve build"
   }
 }
