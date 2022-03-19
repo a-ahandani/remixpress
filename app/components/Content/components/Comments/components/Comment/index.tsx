@@ -4,14 +4,14 @@ import Avatar from "~/components/Avatar";
 import Body from "~/components/Content/components/Body";
 
 import type { CommentProps } from "./types";
-export default function Comments({
+export default function Comment({
   authorImageSize = 60,
   date,
   author,
   children,
 }: CommentProps) {
-  const authorName = author?.node?.name || "";
-  const authorImage = author?.node?.url || "";
+  const authorName = author?.node?.name;
+  const authorImage = author?.node?.url;
 
   return (
     <Box className="comment-box">
