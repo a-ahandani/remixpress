@@ -1,9 +1,5 @@
-export type CreateCommentTypes = {
-  name?: string;
-  email?: string;
-  comment?: string;
+import type { CreateComment } from "~/types/posts";
+
+export type CreateCommentProps = Pick<CreateComment, "commentOn"> & {
+  parent?: number;
 };
-export type CreateCommentProps = Partial<Comment> &
-  CreateCommentTypes & {
-    parentId?: string;
-  };

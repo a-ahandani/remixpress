@@ -3,9 +3,9 @@ import {
   PostToCommentConnection,
   CommentToCommentConnection,
   Comment as CommentDto,
-  Maybe,
-} from "~/types/wordpress_types";
-
+  CreateCommentInput,
+} from "~/types/wordpressTypes";
+import { Maybe } from "~/types/utils";
 export type Post = {
   slug: string;
   title: string;
@@ -22,3 +22,4 @@ export type Comments =
   | Maybe<CommentToCommentConnection>;
 
 export type Comment = CommentDto;
+export type CreateComment = CreateCommentInput;

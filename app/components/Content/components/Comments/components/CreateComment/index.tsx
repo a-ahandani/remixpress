@@ -1,3 +1,5 @@
+import { useTransition, useActionData, Form } from "remix";
+import { useEffect, useRef } from "react";
 import {
   TextField,
   Box,
@@ -7,15 +9,33 @@ import {
   Collapse,
 } from "@mui/material";
 import { useState } from "react";
+import type { CreateCommentProps } from "./types";
+export default function CreateComment({
+  commentOn,
+  parent,
+}: CreateCommentProps) {
+  const transition = useTransition();
+  const actionData = useActionData();
 
-import type { CreateCommentProps, CreateCommentTypes } from "./types";
-export default function CreateComment({ parentId }: CreateCommentProps) {
+  const isSubmitting = transition.state == "submitting";
+  const isReloading = transition.type === "actionReload";
+
+  const formRef = useRef<HTMLFormElement | null>(null);
   const [open, setOpen] = useState(false);
-  const [formValue, setFormValue] = useState<CreateCommentTypes>();
 
-  function handleSubmit() {
-    console.log(formValue, parentId);
-  }
+  useEffect(() => {
+    if (!isSubmitting) {
+      formRef.current?.reset();
+    }
+  }, [isSubmitting]);
+
+  useEffect(() => {
+    if (open && isReloading) {
+      setOpen(false);
+    }
+  }, [open, isReloading]);
+
+  console.log(actionData?.success, transition.type);
   return (
     <Box className="comment-box">
       <Button
@@ -30,66 +50,67 @@ export default function CreateComment({ parentId }: CreateCommentProps) {
         Reply
       </Button>
       <Collapse in={open}>
-        <Grid sx={{ mt: 1 }} container spacing={1}>
-          <Grid
-            item
-            xs={12}
-            sm={4}
-            sx={{ display: "flex", flexDirection: "column" }}
-          >
-            <TextField
-              id="outlined-multiline-flexible"
-              label="Name"
-              onChange={(e) =>
-                setFormValue({ ...formValue, name: e.target.value })
-              }
-              size="small"
-              sx={{ mb: 1 }}
-            />
-            <TextField
-              id="outlined-multiline-flexible"
-              label="Email"
-              onChange={(e) =>
-                setFormValue({ ...formValue, email: e.target.value })
-              }
-              size="small"
-            />
-          </Grid>
-          <Grid item xs={12} sm={8}>
-            <TextField
-              id="outlined-multiline-flexible"
-              label="Comment"
-              onChange={(e) =>
-                setFormValue({ ...formValue, comment: e.target.value })
-              }
-              multiline
-              fullWidth
-              minRows={2.4}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <Box
-              sx={{
-                mx: 1,
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "center",
-              }}
+        <Form ref={formRef} method="post">
+          {parent && <input type="hidden" name="parent" value={parent} />}
+          {commentOn && (
+            <input type="hidden" name="commentOn" value={commentOn} />
+          )}
+          <Grid sx={{ mt: 1 }} container spacing={1}>
+            <Grid
+              item
+              xs={12}
+              sm={4}
+              sx={{ display: "flex", flexDirection: "column" }}
             >
-              <Typography sx={{ flex: 1 }} variant="caption">
-                Emails wont be published.
-              </Typography>
-              <Button
+              <TextField
+                label="Name"
+                name="author"
                 size="small"
-                variant="contained"
-                onClick={handleSubmit}
-                disableElevation
+                required
+                sx={{ mb: 1 }}
+              />
+              <TextField
+                label="Email"
+                type="email"
+                placeholder="Enter a valid email address"
+                name="authorEmail"
+                size="small"
+              />
+            </Grid>
+            <Grid item xs={12} sm={8}>
+              <TextField
+                label="Comment"
+                name="content"
+                required
+                multiline
+                fullWidth
+                minRows={2.4}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <Box
+                sx={{
+                  mx: 1,
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                }}
               >
-                Submit
-              </Button>
-            </Box>
+                <Typography sx={{ flex: 1 }} variant="caption">
+                  Emails wont be published.
+                </Typography>
+                <Button
+                  size="small"
+                  variant="contained"
+                  type="submit"
+                  disableElevation
+                >
+                  Submit
+                </Button>
+              </Box>
+            </Grid>
           </Grid>
-        </Grid>
+        </Form>
       </Collapse>
     </Box>
   );

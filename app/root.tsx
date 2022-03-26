@@ -8,14 +8,7 @@ import {
   ScrollRestoration,
   useCatch,
 } from "remix";
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  useNavigate,
-  useLocation,
-  To,
-} from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { QueryParamProvider } from "use-query-params";
 import { withEmotionCache } from "@emotion/react";
 import { unstable_useEnhancedEffect as useEnhancedEffect } from "@mui/material";
@@ -108,19 +101,13 @@ export default function App() {
 }
 
 export function ErrorBoundary({ error }: { error: Error }) {
-  console.error(error);
-
+  console.log(error);
   return (
     <Document title="Error!">
       <Layout>
         <div>
           <h1>There was an error</h1>
           <p>{error.message}</p>
-          <hr />
-          <p>
-            Hey, developer, you should replace this with what you want your
-            users to see.
-          </p>
         </div>
       </Layout>
     </Document>

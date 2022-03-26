@@ -4,21 +4,32 @@ import { isEmpty } from "lodash";
 import { Box } from "@mui/material";
 
 import type { CommentsProps } from "./types";
-export default function Comments({ comments, child }: CommentsProps) {
+export default function Comments({
+  comments,
+  child,
+  databaseId,
+}: CommentsProps) {
   return (
     <>
-      {!child && <CreateComment />}
+      {!child && <CreateComment commentOn={databaseId} />}
       {comments?.nodes?.map((comment) => {
-        const { content, date, id, author, replies } = comment || {};
+        const {
+          content,
+          date,
+          id: commentId,
+          databaseId: commentDatabaseId,
+          author,
+          replies,
+        } = comment || {};
         return (
           <Box sx={{ backgroundColor: "#EEE", borderRadius: 3, p: 2, mb: 1 }}>
-            <Comment key={id} author={author} date={date}>
+            <Comment key={commentId} author={author} date={date}>
               {content}
             </Comment>
-            <CreateComment parentId={id} />
+            <CreateComment parent={commentDatabaseId} commentOn={databaseId} />
             {!isEmpty(replies?.nodes) && (
               <Box>
-                <Comments comments={replies} child />
+                <Comments databaseId={databaseId} comments={replies} child />
               </Box>
             )}
           </Box>

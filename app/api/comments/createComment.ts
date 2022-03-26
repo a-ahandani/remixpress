@@ -1,39 +1,35 @@
 import { gql } from "graphql-request";
 import { graphql } from "~/lib/graphql";
-import type { Post } from "~/types/posts";
+import type { CreateComment } from "~/types/posts";
 
 const CREATE_COMMENT = gql`
-  mutation CREATE_COMMENT {
-    createComment(
-      input: {
-        commentOn: 149
-        content: "This is a test comment, yo"
-        author: "Jason"
-        authorEmail: "a@b.com"
-        parent: "5555"
-      }
-    ) {
+  mutation CREATE_COMMENT($input: CreateCommentInput!) {
+    createComment(input: $input) {
       success
       comment {
         id
         content
-        author {
-          node {
-            name
-            email
-          }
-        }
-        parentId
+        approved
       }
     }
   }
 `;
 
-export const getPost = async ({
-  slug,
-}: {
-  slug: string;
-}): Promise<{ posts: { nodes: Post[] } }> => {
-  const data = await graphql.request(CREATE_COMMENT, { slug });
-  return data.post;
+export const createComment = async ({
+  commentOn,
+  content,
+  author,
+  authorEmail,
+  parent,
+}: CreateComment): Promise<unknown> => {
+  const { createComment } = await graphql.request(CREATE_COMMENT, {
+    input: {
+      commentOn: Number(commentOn),
+      content,
+      author,
+      authorEmail,
+      parent: Number(parent),
+    },
+  });
+  return createComment;
 };
