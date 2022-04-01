@@ -1,6 +1,7 @@
 /**
  * @type {import('@remix-run/dev').AppConfig}
  */
+
 module.exports = {
   serverBuildTarget: "vercel",
   // When running locally in development mode, we use the built in remix

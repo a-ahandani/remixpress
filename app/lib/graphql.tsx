@@ -1,5 +1,4 @@
 import { GraphQLClient } from "graphql-request";
 
-const API_URL = process.env.API_URL;
-
-export const graphql = new GraphQLClient("http://blog.ahandani.com/?");
+const GRAPHQL_ENDPOINT = process.env.GRAPHQL_ENDPOINT as string;
+export const graphql = new GraphQLClient(GRAPHQL_ENDPOINT);
