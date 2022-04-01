@@ -6,6 +6,7 @@ import {
   CreateCommentInput,
 } from "~/types/wordpressTypes";
 import { Maybe } from "~/types/utils";
+
 export type Post = {
   slug: string;
   title: string;
