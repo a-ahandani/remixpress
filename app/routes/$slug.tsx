@@ -28,7 +28,7 @@ export default function PostSlug() {
         component={RmxLink}
         disableRipple
         variant="text"
-        to={"/posts"}
+        to={"/"}
         startIcon={<ArrowBackOutlined />}
       >
         Back to blog

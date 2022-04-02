@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import Body from "~/components/Content/components/Body";
 import Title from "~/components/Content/components/Title";
 import Date from "~/components/Date";
@@ -13,9 +13,9 @@ export default function Excerpt({
 }: ExcerptProps) {
   return (
     <Box sx={{ mt: 4, ml: 3 }}>
-      <Date date={date} />
+      <Date gutterBottom date={date} sx={{ display: "flex", width: "100%" }} />
       <Title to={slug}>{title}</Title>
-      {excerpt && <Body>{excerpt}</Body>}
+      <Body>{excerpt}</Body>
       {commentCount && `comments: ${commentCount}`}
     </Box>
   );
