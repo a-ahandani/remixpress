@@ -23,9 +23,10 @@ export const COMMENT = gql`
   }
 `;
 
-export const POST = gql`
+export const NODE = gql`
   ${COMMENT}
-  fragment post on Post {
+  fragment Post on Post {
+    __typename
     id
     databaseId
     title
@@ -33,7 +34,6 @@ export const POST = gql`
     content
     date
     comments(first: 100, where: { parent: null }) {
-      # Get three levels of comments reply
       nodes {
         ...comment
         replies {
@@ -54,10 +54,7 @@ export const POST = gql`
       }
     }
   }
-`;
-export const PAGE = gql`
-  ${COMMENT}
-  fragment page on Page {
+  fragment Page on Page {
     id
     databaseId
     title
@@ -65,7 +62,6 @@ export const PAGE = gql`
     content
     date
     comments(first: 100, where: { parent: null }) {
-      # Get three levels of comments reply
       nodes {
         ...comment
         replies {

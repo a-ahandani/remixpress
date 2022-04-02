@@ -3,14 +3,14 @@ import { Button } from "@mui/material";
 import type { LoaderFunction, ActionFunction } from "remix";
 import { ArrowBackOutlined } from "@mui/icons-material";
 import type { Post } from "~/types/posts";
-import { getPost } from "~/api/posts/getPost";
-import { createComment } from "~/api/comments/createComment";
+import { getNode } from "~/api/getNode";
+import { createComment } from "~/api/createComment";
 import Title from "~/components/Content/components/Title";
 import Comments from "~/components/Content/components/Comments";
 import Body from "~/components/Content/components/Body";
 
 export const loader: LoaderFunction = async ({ params }) => {
-  return getPost({ slug: params.slug as string });
+  return getNode({ uri: params.slug as string });
 };
 
 export const action: ActionFunction = async ({ request }) => {

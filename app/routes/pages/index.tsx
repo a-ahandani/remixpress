@@ -1,5 +1,5 @@
 import { useLoaderData } from "remix";
-import { getPosts } from "~/api/posts/getPosts";
+import { getPosts } from "~/api/getPosts";
 import qs from "query-string";
 import type { Post, Query } from "~/types/posts";
 import type { LoaderFunction } from "remix";

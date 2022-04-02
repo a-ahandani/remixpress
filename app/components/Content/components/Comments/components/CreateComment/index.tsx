@@ -35,7 +35,6 @@ export default function CreateComment({
     }
   }, [open, isReloading]);
 
-  console.log(actionData?.success, transition.type);
   return (
     <Box className="comment-box">
       <Button
