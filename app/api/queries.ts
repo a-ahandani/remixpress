@@ -1,7 +1,7 @@
 import { gql } from "graphql-request";
 
 export const COMMENT = gql`
-  fragment comment on Comment {
+  fragment Comment on Comment {
     id
     databaseId
     content
@@ -23,8 +23,28 @@ export const COMMENT = gql`
   }
 `;
 
+export const CATEGORY = gql`
+  fragment Category on Category {
+    name
+    id
+    slug
+    uri
+  }
+`;
+
+export const TAG = gql`
+  fragment Tag on Tag {
+    name
+    id
+    slug
+    uri
+  }
+`;
+
 export const NODE = gql`
   ${COMMENT}
+  ${CATEGORY}
+  ${TAG}
   fragment Post on Post {
     __typename
     id
@@ -33,18 +53,28 @@ export const NODE = gql`
     uri
     content
     date
+    categories {
+      nodes {
+        ...Category
+      }
+    }
+    tags {
+      nodes {
+        ...Tag
+      }
+    }
     comments(first: 100, where: { parent: null }) {
       nodes {
-        ...comment
+        ...Comment
         replies {
           nodes {
-            ...comment
+            ...Comment
             replies {
               nodes {
-                ...comment
+                ...Comment
                 replies {
                   nodes {
-                    ...comment
+                    ...Comment
                   }
                 }
               }
@@ -63,16 +93,16 @@ export const NODE = gql`
     date
     comments(first: 100, where: { parent: null }) {
       nodes {
-        ...comment
+        ...Comment
         replies {
           nodes {
-            ...comment
+            ...Comment
             replies {
               nodes {
-                ...comment
+                ...Comment
                 replies {
                   nodes {
-                    ...comment
+                    ...Comment
                   }
                 }
               }
@@ -81,5 +111,29 @@ export const NODE = gql`
         }
       }
     }
+  }
+`;
+
+export const POSTS = gql`
+  ${CATEGORY}
+  ${TAG}
+  fragment Post on Post {
+    id
+    title
+    excerpt
+    slug
+    categories {
+      nodes {
+        ...Category
+      }
+    }
+    tags {
+      nodes {
+        ...Tag
+      }
+    }
+    commentCount
+    date
+    dateGmt
   }
 `;

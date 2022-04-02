@@ -1,24 +1,14 @@
 import { gql } from "graphql-request";
 import { graphql } from "~/lib/graphql";
 import type { Post, Query } from "~/types/posts";
+import { POSTS } from "./queries";
 
 const GET_POSTS = gql`
+  ${POSTS}
   query getPosts($first: Int, $last: Int, $after: String, $before: String) {
     posts(first: $first, last: $last, after: $after, before: $before) {
       nodes {
-        id
-        title
-        excerpt
-        slug
-        categories {
-          nodes {
-            name
-            id
-          }
-        }
-        commentCount
-        date
-        dateGmt
+        ...Post
       }
       pageInfo {
         hasNextPage
