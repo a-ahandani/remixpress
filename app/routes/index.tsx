@@ -1,7 +1,7 @@
 import { useLoaderData } from "remix";
 import { getPosts } from "~/api/getPosts";
 import qs from "query-string";
-import type { Post, Query } from "~/types/posts";
+import type { Node, Query } from "~/types/posts";
 import type { LoaderFunction } from "remix";
 import { useQueryParams, NumberParam, StringParam } from "use-query-params";
 
@@ -24,7 +24,7 @@ export const loader: LoaderFunction = async ({ request }) => {
 
 export default function Posts() {
   const { nodes, pageInfo } = useLoaderData<{
-    nodes: Post[];
+    nodes: Node[];
     pageInfo: {
       endCursor?: string;
       hasNextPage: boolean;

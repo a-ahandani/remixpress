@@ -1,6 +1,6 @@
 import { gql } from "graphql-request";
 import { graphql } from "~/lib/graphql";
-import type { Post } from "~/types/posts";
+import type { Node } from "~/types/posts";
 import { NODE } from "./queries";
 
 const GET_NODE = gql`
@@ -8,8 +8,10 @@ const GET_NODE = gql`
   query GetNodeByUri($uri: String!) {
     nodeByUri(uri: $uri) {
       __typename
-      ...Post
-      ...Page
+      ...PostContent
+      ...PageContent
+      ...TagArchive
+      ...CategoryArchive
     }
   }
 `;
@@ -18,7 +20,7 @@ export const getNode = async ({
   uri,
 }: {
   uri: string;
-}): Promise<{ posts: { nodes: Post[] } }> => {
+}): Promise<{ posts: { nodes: Node[] } }> => {
   const data = await graphql.request(GET_NODE, { uri });
   return data.nodeByUri;
 };

@@ -1,6 +1,6 @@
 import { gql } from "graphql-request";
 import { graphql } from "~/lib/graphql";
-import type { Post, Query } from "~/types/posts";
+import type { Node, Query } from "~/types/posts";
 import { POSTS } from "./queries";
 
 const GET_POSTS = gql`
@@ -8,7 +8,7 @@ const GET_POSTS = gql`
   query getPosts($first: Int, $last: Int, $after: String, $before: String) {
     posts(first: $first, last: $last, after: $after, before: $before) {
       nodes {
-        ...Post
+        ...PostExcerpt
       }
       pageInfo {
         hasNextPage
@@ -24,7 +24,7 @@ export const getPosts = async ({
   limit = 5,
   after,
   before,
-}: Query): Promise<{ posts: { nodes: Post[] } }> => {
+}: Query): Promise<{ posts: { nodes: Node[] } }> => {
   const data = await graphql.request(GET_POSTS, {
     first: after ? limit : before ? null : limit,
     last: before ? limit : null,

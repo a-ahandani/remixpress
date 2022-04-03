@@ -45,7 +45,16 @@ export const NODE = gql`
   ${COMMENT}
   ${CATEGORY}
   ${TAG}
-  fragment Post on Post {
+
+  fragment PostList on Post {
+    __typename
+    id
+    title
+    uri
+    date
+  }
+
+  fragment PostContent on Post {
     __typename
     id
     databaseId
@@ -84,7 +93,7 @@ export const NODE = gql`
       }
     }
   }
-  fragment Page on Page {
+  fragment PageContent on Page {
     id
     databaseId
     title
@@ -112,16 +121,35 @@ export const NODE = gql`
       }
     }
   }
+  fragment CategoryArchive on Category {
+    name
+    description
+    posts {
+      nodes {
+        ...PostList
+      }
+    }
+  }
+  fragment TagArchive on Tag {
+    name
+    description
+    posts {
+      nodes {
+        ...PostList
+      }
+    }
+  }
 `;
 
 export const POSTS = gql`
   ${CATEGORY}
   ${TAG}
-  fragment Post on Post {
+  fragment PostExcerpt on Post {
     id
     title
     excerpt
     slug
+    uri
     categories {
       nodes {
         ...Category

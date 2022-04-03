@@ -9,7 +9,9 @@ export default function Title({ children, to, sx, ...rest }: TitleProps) {
       variant="h4"
       {...rest}
       sx={{
+        width: "100%",
         textDecoration: "none",
+        display: "flex",
         color: (theme) => theme.palette.common.black,
         pb: 0,
         ...sx,
