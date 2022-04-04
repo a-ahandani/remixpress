@@ -7,6 +7,7 @@ export default function Taxonomies({ data, ChipProps }: TaxonomiesProps) {
     <>
       {data?.map(({ uri: to, name }) => (
         <Chip
+          key={`${to}_${name}`}
           {...(to && { component: Link, to, clickable: true })}
           label={name}
           size="small"

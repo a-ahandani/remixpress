@@ -20,11 +20,21 @@ const GET_POSTS = gql`
   }
 `;
 
+export type Posts = {
+  nodes: Node[];
+  pageInfo: {
+    hasNextPage: boolean;
+    endCursor: string;
+    hasPreviousPage: boolean;
+    startCursor: string;
+  };
+};
+
 export const getPosts = async ({
   limit = 5,
   after,
   before,
-}: Query): Promise<{ posts: { nodes: Node[] } }> => {
+}: Query): Promise<{ posts: Posts }> => {
   const data = await graphql.request(GET_POSTS, {
     first: after ? limit : before ? null : limit,
     last: before ? limit : null,

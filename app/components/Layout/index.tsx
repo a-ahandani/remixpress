@@ -1,15 +1,27 @@
-import { ReactNode } from "react";
-import { useTransition } from "remix";
-
+import { ReactNode, useEffect } from "react";
+import { useTransition, useFetcher } from "remix";
 import Logo from "~/components/Logo";
 import LayoutProvider from "~/components/Layout/components/LayoutProvider";
 import { Container, AppBar, Toolbar, Box, LinearProgress } from "@mui/material";
 import Menu from "~/components/Menu";
+import type { Settings } from "~/api/getSettings";
+
 const MENU_WIDTH = 80;
+
 export default function Layout({ children }: { children: ReactNode }) {
-  const { location, state, submission, type } = useTransition();
+  const { state } = useTransition();
+  const {
+    load: fetchSettings,
+    data: settings,
+    state: settingsState,
+  } = useFetcher<Settings>();
 
   const isLoading = state === "loading";
+
+  useEffect(() => {
+    fetchSettings("/settings");
+  }, []);
+
   return (
     <LayoutProvider defaultLayoutState={{ isMenuOpen: false }}>
       <Box>
@@ -19,13 +31,18 @@ export default function Layout({ children }: { children: ReactNode }) {
             <Toolbar
               sx={{
                 flexWrap: "wrap",
+                height: 122,
                 py: 2,
                 px: 6,
                 borderBottom: (theme) => `1px solid ${theme.palette.divider}`,
               }}
             >
-              <Box sx={{ p: 2, fontWeight: "bold", flexGrow: 1 }}>
-                <Logo />
+              <Box sx={{ p: 2 }}>
+                <Logo
+                  loading={settingsState !== "idle"}
+                  title={settings?.allSettings.generalSettingsTitle}
+                  description={settings?.allSettings.generalSettingsDescription}
+                />
               </Box>
             </Toolbar>
           </AppBar>

@@ -1,8 +1,10 @@
 import { useLoaderData } from "remix";
 import { getPosts } from "~/api/getPosts";
 import qs from "query-string";
-import type { Node, Query } from "~/types/posts";
+import type { Query } from "~/types/posts";
 import type { LoaderFunction } from "remix";
+import type { Posts } from "~/api/getPosts";
+
 import { useQueryParams, NumberParam, StringParam } from "use-query-params";
 
 import Excerpt from "~/components/Content/components/Excerpt";
@@ -23,15 +25,7 @@ export const loader: LoaderFunction = async ({ request }) => {
 };
 
 export default function Posts() {
-  const { nodes, pageInfo } = useLoaderData<{
-    nodes: Node[];
-    pageInfo: {
-      endCursor?: string;
-      hasNextPage: boolean;
-      hasPreviousPage: boolean;
-      startCursor: string;
-    };
-  }>();
+  const { nodes, pageInfo } = useLoaderData<Posts>();
 
   const { endCursor, hasNextPage, hasPreviousPage, startCursor } = pageInfo;
 
@@ -42,7 +36,6 @@ export default function Posts() {
     after: StringParam,
     before: StringParam,
   });
-
   return (
     <div>
       <Typography variant="h1">Posts</Typography>
