@@ -13,6 +13,7 @@ import { QueryParamProvider } from "use-query-params";
 import { withEmotionCache } from "@emotion/react";
 import { unstable_useEnhancedEffect as useEnhancedEffect } from "@mui/material";
 import ClientStyleContext from "./lib/client-style-context";
+import Settings from "./components/Settings";
 import Layout from "./components/Layout";
 import theme from "./components/Layout/theme";
 
@@ -91,11 +92,13 @@ const RouteAdapter: React.FC = ({ children }) => {
 export default function App() {
   return (
     <Document>
-      <Layout>
-        <QueryParamProvider ReactRouterRoute={RouteAdapter}>
-          <Outlet />
-        </QueryParamProvider>
-      </Layout>
+      <Settings>
+        <Layout>
+          <QueryParamProvider ReactRouterRoute={RouteAdapter}>
+            <Outlet />
+          </QueryParamProvider>
+        </Layout>
+      </Settings>
     </Document>
   );
 }

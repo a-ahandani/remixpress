@@ -14,6 +14,7 @@ export default function Menu({ width }: MenuProps) {
       isMenuOpen: !isMenuOpen,
     });
   }
+
   return (
     <Drawer
       sx={{

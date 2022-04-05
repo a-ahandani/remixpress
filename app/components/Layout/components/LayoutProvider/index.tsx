@@ -1,5 +1,5 @@
 // @flow
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import LayoutContext from "~/components/Layout/context";
 import { isFunction } from "lodash";
 import type { LayoutProviderProps } from "./types";

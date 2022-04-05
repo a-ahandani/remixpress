@@ -4,23 +4,12 @@ import Logo from "~/components/Logo";
 import LayoutProvider from "~/components/Layout/components/LayoutProvider";
 import { Container, AppBar, Toolbar, Box, LinearProgress } from "@mui/material";
 import Menu from "~/components/Menu";
-import type { Settings } from "~/api/getSettings";
 
 const MENU_WIDTH = 80;
 
 export default function Layout({ children }: { children: ReactNode }) {
   const { state } = useTransition();
-  const {
-    load: fetchSettings,
-    data: settings,
-    state: settingsState,
-  } = useFetcher<Settings>();
-
   const isLoading = state === "loading";
-
-  useEffect(() => {
-    fetchSettings("/settings");
-  }, []);
 
   return (
     <LayoutProvider defaultLayoutState={{ isMenuOpen: false }}>
@@ -38,11 +27,7 @@ export default function Layout({ children }: { children: ReactNode }) {
               }}
             >
               <Box sx={{ p: 2 }}>
-                <Logo
-                  loading={settingsState !== "idle"}
-                  title={settings?.allSettings.generalSettingsTitle}
-                  description={settings?.allSettings.generalSettingsDescription}
-                />
+                <Logo />
               </Box>
             </Toolbar>
           </AppBar>

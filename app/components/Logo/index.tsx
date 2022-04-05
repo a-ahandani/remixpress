@@ -2,14 +2,11 @@ import { Link as RmxLink } from "remix";
 import { Typography, Link, Skeleton, Box } from "@mui/material";
 
 import useLayout from "~/components/Layout/hooks/use-layout-context";
+import useSettings from "~/components/Settings/hooks/use-settings-context";
 import type { LogoProps } from "./types";
 
-export default function Logo({
-  description,
-  title,
-  loading,
-  ...rest
-}: LogoProps) {
+export default function Logo({ description, title, ...rest }: LogoProps) {
+  const { settings } = useSettings();
   const { layoutState, setLayoutState } = useLayout();
   const { isMenuOpen } = layoutState;
 
@@ -34,10 +31,18 @@ export default function Logo({
       }}
     >
       <Typography sx={{ fontWeight: "bold" }} variant="h5">
-        {loading ? <Skeleton width={140} /> : title}
+        {!settings ? (
+          <Skeleton width={140} />
+        ) : (
+          settings.allSettings.generalSettingsTitle
+        )}
       </Typography>
       <Typography sx={{ fontWeight: "light" }} variant="caption">
-        {loading ? <Skeleton width={220} /> : description}
+        {!settings ? (
+          <Skeleton width={220} />
+        ) : (
+          settings.allSettings.generalSettingsDescription
+        )}
       </Typography>
     </Link>
   );

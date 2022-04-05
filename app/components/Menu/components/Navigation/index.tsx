@@ -9,6 +9,7 @@ import type { NavigationProps } from "./types";
 export default function Navigation({ ...rest }: NavigationProps) {
   const { layoutState } = useLayout();
   const { isMenuOpen } = layoutState;
+
   return (
     <Box
       {...rest}
