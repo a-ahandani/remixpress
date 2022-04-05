@@ -6,6 +6,7 @@ import NavLink from "./components/NavLink";
 import useLayout from "~/components/Layout/hooks/use-layout-context";
 import useSettings from "~/components/Settings/hooks/use-settings-context";
 import type { NavigationProps } from "./types";
+import { sortBy } from "lodash";
 
 export default function Navigation({ ...rest }: NavigationProps) {
   const settings = useSettings();
@@ -45,13 +46,15 @@ export default function Navigation({ ...rest }: NavigationProps) {
             }}
           >
             <MenuList>
-              {settings.menus?.sidebar?.menuItems.nodes.map((menu) => {
-                return (
-                  <NavLink key={menu.id} to={menu.path}>
-                    {menu.label}
-                  </NavLink>
-                );
-              })}
+              {sortBy(settings.menus?.sidebar?.menuItems.nodes, ["order"]).map(
+                (menu) => {
+                  return (
+                    <NavLink key={menu.id} to={menu.path}>
+                      {menu.label}
+                    </NavLink>
+                  );
+                }
+              )}
             </MenuList>
           </Box>
         </Grid>
