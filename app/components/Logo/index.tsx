@@ -6,7 +6,7 @@ import useSettings from "~/components/Settings/hooks/use-settings-context";
 import type { LogoProps } from "./types";
 
 export default function Logo({ description, title, ...rest }: LogoProps) {
-  const { settings } = useSettings();
+  const settings = useSettings();
   const { layoutState, setLayoutState } = useLayout();
   const { isMenuOpen } = layoutState;
 
@@ -31,17 +31,17 @@ export default function Logo({ description, title, ...rest }: LogoProps) {
       }}
     >
       <Typography sx={{ fontWeight: "bold" }} variant="h5">
-        {!settings ? (
+        {settings.state === "loading" ? (
           <Skeleton width={140} />
         ) : (
-          settings.allSettings.generalSettingsTitle
+          settings.common?.generalSettingsTitle
         )}
       </Typography>
       <Typography sx={{ fontWeight: "light" }} variant="caption">
-        {!settings ? (
+        {settings.state === "loading" ? (
           <Skeleton width={220} />
         ) : (
-          settings.allSettings.generalSettingsDescription
+          settings.common?.generalSettingsDescription
         )}
       </Typography>
     </Link>

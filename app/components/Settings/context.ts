@@ -1,10 +1,13 @@
 // @flow
 import { createContext } from "react";
-import type { SettingsProps } from "./components/SettingsProvider/types";
+import type { CommonSettings, Menu } from "~/api/getSettings";
 
 export interface SettingsContextProps {
-  setSettings: (params: SettingsProps) => void;
-  settings?: SettingsProps;
+  common?: CommonSettings;
+  menus?: {
+    [slug: string]: Menu;
+  };
+  state: "loading" | "idle" | "submitting";
 }
 
 const SettingsContext = createContext<SettingsContextProps>(

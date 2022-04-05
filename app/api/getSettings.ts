@@ -18,6 +18,8 @@ const GET_SETTINGS = gql`
           nodes {
             title
             target
+            label
+            id
             path
             parentId
             parentDatabaseId
@@ -30,14 +32,8 @@ const GET_SETTINGS = gql`
   }
 `;
 
-export type Settings = {
-  allSettings: {
-    generalSettingsTitle: string;
-    generalSettingsLanguage: string;
-    generalSettingsDateFormat: string;
-    generalSettingsDescription: string;
-  };
-  menus: {
+export type Menu = {
+  menuItems: {
     nodes: {
       title?: string;
       target?: string;
@@ -46,7 +42,24 @@ export type Settings = {
       parentDatabaseId?: string;
       order: string;
       description?: string;
+      id: string;
+      label?: string;
     }[];
+    name: string;
+    slug: string;
+  };
+};
+export type CommonSettings = {
+  generalSettingsTitle: string;
+  generalSettingsLanguage: string;
+  generalSettingsDateFormat: string;
+  generalSettingsDescription: string;
+};
+
+export type Settings = {
+  allSettings: CommonSettings;
+  menus: {
+    nodes: Menu[];
   };
 };
 

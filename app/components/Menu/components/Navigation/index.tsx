@@ -4,9 +4,11 @@ import { Grid, Box, MenuList } from "@mui/material";
 import bgImage from "~/resources/images/hip-square.png";
 import NavLink from "./components/NavLink";
 import useLayout from "~/components/Layout/hooks/use-layout-context";
+import useSettings from "~/components/Settings/hooks/use-settings-context";
 import type { NavigationProps } from "./types";
 
 export default function Navigation({ ...rest }: NavigationProps) {
+  const settings = useSettings();
   const { layoutState } = useLayout();
   const { isMenuOpen } = layoutState;
 
@@ -34,7 +36,7 @@ export default function Navigation({ ...rest }: NavigationProps) {
                   theme.palette.primary.main,
                   theme.palette.action.selectedOpacity
                 ),
-              background: `url(${bgImage})`,
+              // background: `url(${bgImage})`,
               height: "100vh",
               display: "flex",
               alignContent: "center",
@@ -43,10 +45,13 @@ export default function Navigation({ ...rest }: NavigationProps) {
             }}
           >
             <MenuList>
-              <NavLink to={"/"}>Home</NavLink>
-              <NavLink to={"/about"}>About</NavLink>
-              <NavLink to={"/posts"}>Blog</NavLink>
-              <NavLink to={"/contact"}>Contact</NavLink>
+              {settings.menus?.sidebar?.menuItems.nodes.map((menu) => {
+                return (
+                  <NavLink key={menu.id} to={menu.path}>
+                    {menu.label}
+                  </NavLink>
+                );
+              })}
             </MenuList>
           </Box>
         </Grid>
