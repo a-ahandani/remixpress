@@ -11,10 +11,11 @@ export const COMMENT = gql`
     author {
       node {
         avatar {
-          foundAvatar
-          default
-          size
           url
+          size
+          scheme
+          height
+          foundAvatar
         }
         name
         id
@@ -40,11 +41,34 @@ export const TAG = gql`
     uri
   }
 `;
+export const AUTHOR = gql`
+  fragment Author on User {
+    avatar {
+      url
+      size
+      scheme
+      height
+      foundAvatar
+    }
+    description
+    firstName
+    isContentNode
+    lastName
+    locale
+    name
+    nickname
+    slug
+    uri
+    url
+    userId
+  }
+`;
 
 export const NODE = gql`
   ${COMMENT}
   ${CATEGORY}
   ${TAG}
+  ${AUTHOR}
 
   fragment PostList on Post {
     __typename
@@ -70,6 +94,11 @@ export const NODE = gql`
     tags {
       nodes {
         ...Tag
+      }
+    }
+    author {
+      node {
+        ...Author
       }
     }
     comments(first: 100, where: { parent: null }) {

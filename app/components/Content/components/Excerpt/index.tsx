@@ -15,34 +15,35 @@ export default function Excerpt({
   date,
   categories,
   tags,
+  hideCommentsButton,
 }: ExcerptProps) {
   return (
     <Box sx={{ mt: 4, ml: 3 }}>
       <Date gutterBottom date={date} sx={{ display: "flex", width: "100%" }} />
       <Title to={uri}>{title}</Title>
 
-      {tags?.nodes && <Taxonomies data={tags.nodes} />}
+      <Taxonomies data={tags?.nodes} />
 
       <Body>{excerpt}</Body>
 
-      <IconButton sx={{ mr: 1 }}>
-        <Badge
-          anchorOrigin={{
-            vertical: "top",
-            horizontal: "left",
-          }}
-          badgeContent={commentCount}
-          color="secondary"
-        >
-          <ModeCommentIcon />
-        </Badge>
-      </IconButton>
-      {categories?.nodes && (
-        <Taxonomies
-          ChipProps={{ variant: "outlined", sx: { borderRadius: 0 } }}
-          data={categories.nodes}
-        />
+      {!hideCommentsButton && (
+        <IconButton sx={{ mr: 1 }}>
+          <Badge
+            anchorOrigin={{
+              vertical: "top",
+              horizontal: "left",
+            }}
+            badgeContent={commentCount}
+            color="secondary"
+          >
+            <ModeCommentIcon />
+          </Badge>
+        </IconButton>
       )}
+      <Taxonomies
+        ChipProps={{ variant: "outlined", sx: { borderRadius: 0 } }}
+        data={categories?.nodes}
+      />
     </Box>
   );
 }

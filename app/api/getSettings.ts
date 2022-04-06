@@ -1,6 +1,5 @@
 import { gql } from "graphql-request";
 import { graphql } from "~/lib/graphql";
-import type { Node } from "~/types/posts";
 
 const GET_SETTINGS = gql`
   query GetSettings {

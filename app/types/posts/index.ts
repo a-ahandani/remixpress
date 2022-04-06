@@ -1,38 +1,4 @@
-import {
-  Post as PostDto,
-  PostToCommentConnection,
-  CommentToCommentConnection,
-  Comment as CommentDto,
-  CreateCommentInput,
-  Category as CategoryDto,
-} from "~/types/wordpressTypes";
-import { Maybe } from "~/types/utils";
-
-export type Post = Partial<
-  Pick<
-    PostDto,
-    | "slug"
-    | "id"
-    | "commentCount"
-    | "excerpt"
-    | "title"
-    | "date"
-    | "comments"
-    | "content"
-  >
-> & {
-  uri: string;
-  categories?: { nodes: Taxonomies };
-  tags?: { nodes: Taxonomies };
-  databaseId: number;
-};
-
-export type Node = {
-  uri: string;
-  title?: string;
-  name?: string;
-  posts?: { nodes: Post[] };
-} & Post;
+import { CreateCommentInput, User } from "~/types/wordpressTypes";
 
 export type Query = {
   limit?: number | null;
@@ -40,12 +6,56 @@ export type Query = {
   before?: string | null;
 };
 
-export type Comments =
-  | Maybe<PostToCommentConnection>
-  | Maybe<CommentToCommentConnection>;
+export type ListConnection<T> = {
+  nodes: T[];
+};
+export type Connection<T> = {
+  node: T;
+};
 
-export type Comment = CommentDto;
+export type Commenter = {
+  id: string;
+  name: string;
+};
+export type Comment = {
+  content?: string;
+  date: string;
+  id?: string;
+  databaseId?: number;
+  author: Connection<Commenter>;
+  replies?: ListConnection<Comment>;
+};
+export type Comments = ListConnection<Comment>;
+
 export type CreateComment = CreateCommentInput;
 
-export type Taxonomy = Pick<CategoryDto, "uri" | "name">;
-export type Taxonomies = Taxonomy[];
+export type Author = User;
+
+export type NodeTypes = "Post" | "Category" | "Tag";
+
+export type Taxonomy = { uri?: string; name?: string };
+export type Taxonomies = ListConnection<Taxonomy>;
+
+export type Post = {
+  uri: string;
+  id?: string;
+  slug: string;
+  commentCount: number;
+  excerpt?: string;
+  date?: string;
+  content?: string;
+  categories?: Taxonomies;
+  tags?: Taxonomies;
+  databaseId: number;
+  title?: string;
+  comments?: Comments;
+  author?: Connection<Author>;
+};
+export type Posts = ListConnection<Post>;
+
+export type Node = {
+  __typename?: NodeTypes;
+  name?: string;
+  description?: string;
+  posts?: Posts;
+} & Post;

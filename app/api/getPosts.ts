@@ -1,6 +1,6 @@
 import { gql } from "graphql-request";
 import { graphql } from "~/lib/graphql";
-import type { Node, Query } from "~/types/posts";
+import type { Query, Node } from "~/types/posts";
 import { POSTS } from "./queries";
 
 const GET_POSTS = gql`
@@ -20,14 +20,16 @@ const GET_POSTS = gql`
   }
 `;
 
+export type Pagination = {
+  hasNextPage: boolean;
+  endCursor: string;
+  hasPreviousPage: boolean;
+  startCursor: string;
+};
+
 export type Posts = {
   nodes: Node[];
-  pageInfo: {
-    hasNextPage: boolean;
-    endCursor: string;
-    hasPreviousPage: boolean;
-    startCursor: string;
-  };
+  pageInfo: Pagination;
 };
 
 export const getPosts = async ({

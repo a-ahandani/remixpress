@@ -1,12 +1,14 @@
 import { useLoaderData, Link as RmxLink } from "remix";
-import { Button } from "@mui/material";
+import { Button, Box, Typography } from "@mui/material";
 import type { LoaderFunction, ActionFunction } from "remix";
 import { ArrowBackOutlined } from "@mui/icons-material";
-import type { Node } from "~/types/posts";
 import { getNode } from "~/api/getNode";
+import type { Node } from "~/types/posts";
 import { createComment } from "~/api/createComment";
 import Title from "~/components/Content/components/Title";
 import Comments from "~/components/Content/components/Comments";
+import Author from "~/components/Content/components/Author";
+import Taxonomies from "~/components/Content/components/Taxonomies";
 import Body from "~/components/Content/components/Body";
 
 export const loader: LoaderFunction = async ({ params }) => {
@@ -20,7 +22,8 @@ export const action: ActionFunction = async ({ request }) => {
 };
 
 export default function PostUri() {
-  const { title, content, comments, databaseId } = useLoaderData<Node>();
+  const { title, content, comments, databaseId, categories, tags, author } =
+    useLoaderData<Node>();
 
   return (
     <div>
@@ -33,9 +36,21 @@ export default function PostUri() {
       >
         Back to blog
       </Button>
-
       <Title variant="h1">{title}</Title>
+      <Box>
+        <Taxonomies data={tags?.nodes} />
+      </Box>
       <Body>{content}</Body>
+      <Box>
+        <Taxonomies
+          ChipProps={{ variant: "outlined", sx: { borderRadius: 0 } }}
+          data={categories?.nodes}
+        />
+      </Box>
+      <Box>
+        <Taxonomies data={tags?.nodes} />
+      </Box>
+      <Author data={author?.node} />
       <Comments databaseId={databaseId} comments={comments} />
     </div>
   );

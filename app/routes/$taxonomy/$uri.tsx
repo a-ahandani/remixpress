@@ -2,9 +2,10 @@ import { useLoaderData, Link as RmxLink } from "remix";
 import { Button } from "@mui/material";
 import type { LoaderFunction, ActionFunction } from "remix";
 import { ArrowBackOutlined } from "@mui/icons-material";
-import type { Node } from "~/types/posts";
 import { getNode } from "~/api/getNode";
+import type { Node } from "~/types/posts";
 import { createComment } from "~/api/createComment";
+import Body from "~/components/Content/components/Body";
 import Excerpt from "~/components/Content/components/Excerpt";
 import Title from "~/components/Content/components/Title";
 
@@ -19,7 +20,9 @@ export const action: ActionFunction = async ({ request }) => {
 };
 
 export default function TaxonomyUri() {
-  const { posts, name } = useLoaderData<Node>();
+  const { posts, name, description, __typename, ...rest } =
+    useLoaderData<Node>();
+
   return (
     <div>
       <Button
@@ -32,9 +35,12 @@ export default function TaxonomyUri() {
         Back to blog
       </Button>
 
-      <Title variant="h1">{name}</Title>
+      <Title variant="h1">
+        {__typename}: {name}
+      </Title>
+      <Body>{description}</Body>
       {posts?.nodes?.map(({ id, ...rest }) => (
-        <Excerpt {...rest} key={id} />
+        <Excerpt {...rest} hideCommentsButton key={id} />
       ))}
     </div>
   );

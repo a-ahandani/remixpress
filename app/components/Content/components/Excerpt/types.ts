@@ -1,2 +1,4 @@
 import type { Post } from "~/types/posts";
-export type ExcerptProps = Post & {};
+export type ExcerptProps = Post & {
+  hideCommentsButton?: boolean;
+};
