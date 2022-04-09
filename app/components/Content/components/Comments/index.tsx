@@ -10,7 +10,7 @@ export default function Comments({
   databaseId,
 }: CommentsProps) {
   return (
-    <>
+    <div id="comments">
       {!child && <CreateComment commentOn={databaseId} />}
       {comments?.nodes?.map((comment) => {
         const {
@@ -35,6 +35,6 @@ export default function Comments({
           </Box>
         );
       })}
-    </>
+    </div>
   );
 }

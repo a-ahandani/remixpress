@@ -1,6 +1,6 @@
-import { Box, Drawer } from "@mui/material";
+import { Box, Drawer, IconButton } from "@mui/material";
 import type { MenuProps } from "./types";
-// import { Squeeze as Hamburger } from "hamburger-react";
+import MenuIcon from "@mui/icons-material/Menu";
 import Navigation from "~/components/Menu/components/Navigation";
 import useLayout from "~/components/Layout/hooks/use-layout-context";
 
@@ -50,11 +50,9 @@ export default function Menu({ width }: MenuProps) {
           top: 24,
         }}
       >
-        {/* <Hamburger
-          toggled={isMenuOpen}
-          toggle={handleToggleMenu}
-          size={width / 2.8}
-        /> */}
+        <IconButton size="large" aria-label="Menu" onClick={handleToggleMenu}>
+          <MenuIcon />
+        </IconButton>
       </Box>
       <Box>
         <Navigation />

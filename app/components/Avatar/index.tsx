@@ -1,5 +1,4 @@
-import { Avatar as MuiAvatar, Box, Typography } from "@mui/material";
-
+import { Avatar as MuiAvatar } from "@mui/material";
 import type { AvatarProps } from "./types";
 
 export default function Avatar({ name, image, size, sx }: AvatarProps) {

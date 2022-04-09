@@ -1,5 +1,5 @@
-import { ReactNode, useEffect } from "react";
-import { useTransition, useFetcher } from "remix";
+import { ReactNode } from "react";
+import { useTransition } from "remix";
 import Logo from "~/components/Logo";
 import LayoutProvider from "~/components/Layout/components/LayoutProvider";
 import { Container, AppBar, Toolbar, Box, LinearProgress } from "@mui/material";

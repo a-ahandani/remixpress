@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import { ReactElement, FC } from "react";
 
 import { Box } from "@mui/material";
 import CodeBlock from "~/components/Content/components/Body/components/CodeBlock";
@@ -47,7 +47,7 @@ const BLOCK_COMPONENTS: {
   // [BLOCK_KEYS.P]: Heading,
 };
 
-export default function Body({ body, children, sx, ...rest }: BodyProps) {
+const Body: FC<BodyProps> = ({ body, children, sx, ...rest }) => {
   const content = body || children || "";
 
   const replaceCode = (node: DOMNode) => {
@@ -77,4 +77,6 @@ export default function Body({ body, children, sx, ...rest }: BodyProps) {
       {parse(String(content), { replace: replaceCode })}
     </Box>
   );
-}
+};
+
+export default Body;

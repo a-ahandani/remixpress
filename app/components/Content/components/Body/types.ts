@@ -1,11 +1,10 @@
-import { SxProps } from "@mui/system";
+import type { BoxProps } from "@mui/material";
 import { AtLeastOne } from "~/types/utils";
 import { ReactNode } from "react";
 
 type BaseBodyProps = {
   body: string;
   children?: ReactNode;
-  sx?: SxProps;
-};
+} & BoxProps;
 
 export type BodyProps = AtLeastOne<BaseBodyProps>;
