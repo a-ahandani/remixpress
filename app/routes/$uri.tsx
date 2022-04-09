@@ -36,8 +36,10 @@ export default function PostUri() {
       >
         Back to blog
       </Button>
-      <Title variant="h1">{title}</Title>
-      <Box>
+      <Title sx={{ mb: 1 }} variant="h2">
+        {title}
+      </Title>
+      <Box sx={{ mb: 5 }}>
         <Taxonomies data={tags?.nodes} />
       </Box>
       <Body>{content}</Body>

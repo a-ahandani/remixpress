@@ -35,7 +35,7 @@ export default function TaxonomyUri() {
         Back to blog
       </Button>
 
-      <Title variant="h1">
+      <Title sx={{ mb: 2 }} variant="h2">
         {__typename}: {name}
       </Title>
       <Body>{description}</Body>

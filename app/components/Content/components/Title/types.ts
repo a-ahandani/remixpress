@@ -1,7 +1,4 @@
-import { ReactNode } from "react";
 import type { TypographyProps } from "@mui/material";
+import type { LinkProps } from "remix";
 
-export type TitleProps = TypographyProps & {
-  children: ReactNode;
-  to?: string;
-};
+export type TitleProps = TypographyProps & Partial<LinkProps> & {};

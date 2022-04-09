@@ -1,6 +1,6 @@
 import { Link as RmxLink } from "remix";
-import { Box, IconButton, Badge } from "@mui/material";
-import { Typography, Link, Skeleton } from "@mui/material";
+import { Box, IconButton, Badge, Button } from "@mui/material";
+import { Link } from "@mui/material";
 import Body from "~/components/Content/components/Body";
 import Title from "~/components/Content/components/Title";
 import Taxonomies from "~/components/Content/components/Taxonomies";
@@ -44,6 +44,7 @@ export default function Excerpt({
           </IconButton>
         </Link>
       )}
+
       <Taxonomies
         ChipProps={{ variant: "outlined", sx: { borderRadius: 0 } }}
         data={categories?.nodes}
