@@ -19,7 +19,7 @@ export default function NavLink({ to, children, ...rest }: NavLinkProps) {
     <Link
       component={RmxLink}
       onClick={handleCloseMenu}
-      variant="h4"
+      variant="h5"
       to={to}
       color="text.primary"
       sx={{

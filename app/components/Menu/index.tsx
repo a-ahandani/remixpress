@@ -27,6 +27,7 @@ export default function Menu({ width }: MenuProps) {
         height: "100%",
         width: "100%",
         "& .MuiDrawer-paper": {
+          backgroundColor: "transparent",
           overflow: "hidden",
           ...(isMenuOpen && {
             width: "100%",
@@ -60,6 +61,10 @@ export default function Menu({ width }: MenuProps) {
             display: "flex",
             flexDirection: "column",
             p: 2,
+            backdropFilter: "blur(35px)",
+            "@-moz-document url-prefix()": {
+              backgroundColor: (theme) => theme.palette.common.white,
+            },
           }}
         >
           <IconButton size="large" aria-label="Menu" onClick={handleToggleMenu}>

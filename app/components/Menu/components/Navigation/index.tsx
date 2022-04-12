@@ -25,7 +25,16 @@ export default function Navigation({ ...rest }: NavigationProps) {
       }}
     >
       <Grid sx={{ height: "100vh", width: "100vw" }} container spacing={0}>
-        <Grid item xs={5}>
+        <Grid
+          item
+          xs={5}
+          sx={{
+            backdropFilter: "blur(25px)",
+            "@-moz-document url-prefix()": {
+              backgroundColor: (theme) => theme.palette.common.white,
+            },
+          }}
+        >
           <Box sx={{ fontWeight: "bold", height: "100vh" }}>
             <Box
               sx={{
@@ -39,7 +48,11 @@ export default function Navigation({ ...rest }: NavigationProps) {
             </Box>
           </Box>
         </Grid>
-        <Grid item xs={7}>
+        <Grid
+          item
+          xs={7}
+          sx={{ backgroundColor: (theme) => theme.palette.common.white }}
+        >
           <Box
             sx={{
               backgroundColor: (theme) =>
@@ -47,7 +60,6 @@ export default function Navigation({ ...rest }: NavigationProps) {
                   theme.palette.primary.main,
                   theme.palette.action.selectedOpacity
                 ),
-              // background: `url(${bgImage})`,
               height: "100vh",
               display: "flex",
               alignContent: "center",
