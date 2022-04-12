@@ -1,6 +1,7 @@
 import { Box, Drawer, IconButton } from "@mui/material";
 import type { MenuProps } from "./types";
 import MenuIcon from "@mui/icons-material/Menu";
+import CloseIcon from "@mui/icons-material/Close";
 import Navigation from "~/components/Menu/components/Navigation";
 import useLayout from "~/components/Layout/hooks/use-layout-context";
 
@@ -61,7 +62,7 @@ export default function Menu({ width }: MenuProps) {
           }}
         >
           <IconButton size="large" aria-label="Menu" onClick={handleToggleMenu}>
-            <MenuIcon />
+            {isMenuOpen ? <CloseIcon /> : <MenuIcon />}
           </IconButton>
           <Box
             sx={{
@@ -74,13 +75,13 @@ export default function Menu({ width }: MenuProps) {
             }}
           >
             <IconButton size="small">
-              <LinkedInIcon />
+              <LinkedInIcon fontSize="small" />
             </IconButton>
             <IconButton size="small">
-              <TwitterIcon />
+              <TwitterIcon fontSize="small" />
             </IconButton>
             <IconButton size="small">
-              <EmailIcon />
+              <EmailIcon fontSize="small" />
             </IconButton>
           </Box>
         </Box>
