@@ -5,7 +5,27 @@ import useLayout from "~/components/Layout/hooks/use-layout-context";
 import useSettings from "~/components/Settings/hooks/use-settings-context";
 import type { LogoProps } from "./types";
 
-export default function Logo({ description, title, ...rest }: LogoProps) {
+export enum LOGO_TYPES {
+  LARGE = "large",
+  MEDIUM = "medium",
+  SMALL = "small",
+}
+
+const LOGO_SIZES: {
+  [key: string]: string;
+} = {
+  [LOGO_TYPES.LARGE]: "2.7rem",
+  [LOGO_TYPES.MEDIUM]: "1.5rem",
+  [LOGO_TYPES.SMALL]: "1.2rem",
+};
+
+export default function Logo({
+  size = "medium",
+  description,
+  hideDescription,
+  title,
+  ...rest
+}: LogoProps) {
   const settings = useSettings();
   const { layoutState, setLayoutState } = useLayout();
   const { isMenuOpen } = layoutState;
@@ -30,20 +50,25 @@ export default function Logo({ description, title, ...rest }: LogoProps) {
         ...rest?.sx,
       }}
     >
-      <Typography sx={{ fontWeight: "bold" }} variant="h5">
+      <Typography
+        sx={{ fontWeight: "bold", fontSize: LOGO_SIZES[size] }}
+        variant="h5"
+      >
         {settings.state === "loading" ? (
           <Skeleton width={140} />
         ) : (
           settings.common?.generalSettingsTitle
         )}
       </Typography>
-      <Typography sx={{ fontWeight: "light" }} variant="caption">
-        {settings.state === "loading" ? (
-          <Skeleton width={220} />
-        ) : (
-          settings.common?.generalSettingsDescription
-        )}
-      </Typography>
+      {!hideDescription && (
+        <Typography sx={{ fontWeight: "light" }} variant="caption">
+          {settings.state === "loading" ? (
+            <Skeleton width={220} />
+          ) : (
+            settings.common?.generalSettingsDescription
+          )}
+        </Typography>
+      )}
     </Link>
   );
 }

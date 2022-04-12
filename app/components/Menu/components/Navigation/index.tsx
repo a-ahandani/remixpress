@@ -21,12 +21,22 @@ export default function Navigation({ ...rest }: NavigationProps) {
         display: "flex",
         height: "100vh",
         width: "100vw",
+        ...rest?.sx,
       }}
     >
       <Grid sx={{ height: "100vh", width: "100vw" }} container spacing={0}>
         <Grid item xs={5}>
-          <Box sx={{ p: 4, fontWeight: "bold", height: "100vh" }}>
-            {isMenuOpen && <Logo />}
+          <Box sx={{ fontWeight: "bold", height: "100vh" }}>
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                height: "100%",
+              }}
+            >
+              {isMenuOpen && <Logo hideDescription size="large" />}
+            </Box>
           </Box>
         </Grid>
         <Grid item xs={7}>

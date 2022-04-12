@@ -23,7 +23,6 @@ export default function Layout({ children }: { children: ReactNode }) {
                 height: 122,
                 py: 2,
                 px: 6,
-                borderBottom: (theme) => `1px solid ${theme.palette.divider}`,
               }}
             >
               <Box sx={{ p: 2 }}>
@@ -32,8 +31,8 @@ export default function Layout({ children }: { children: ReactNode }) {
             </Toolbar>
           </AppBar>
           {isLoading && (
-            <Box sx={{ height: 5, mb: "-5px" }}>
-              <LinearProgress color="inherit" />
+            <Box sx={{ height: 2, mb: "-2px" }}>
+              <LinearProgress sx={{ height: 2 }} color="inherit" />
             </Box>
           )}
 

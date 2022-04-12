@@ -1,20 +1,22 @@
-import { ButtonGroup, Button } from "@mui/material";
+import { IconButton, Tooltip, Box } from "@mui/material";
 import { useQueryParams, NumberParam, StringParam } from "use-query-params";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 import type { PrevNextProps } from "./types";
 
-export default function PrevNext({ pageInfo }: PrevNextProps) {
+export default function PrevNext({ pageInfo, sx }: PrevNextProps) {
   const { endCursor, hasNextPage, hasPreviousPage, startCursor } = pageInfo;
 
-  const [query, setQuery] = useQueryParams({
+  const [, setQuery] = useQueryParams({
     limit: NumberParam,
     after: StringParam,
     before: StringParam,
   });
 
   return (
-    <ButtonGroup variant="outlined" size="small" disableElevation>
-      <Button
+    <Box sx={sx}>
+      <IconButton
         disabled={!hasPreviousPage}
         onClick={() => {
           setQuery({
@@ -23,9 +25,11 @@ export default function PrevNext({ pageInfo }: PrevNextProps) {
           });
         }}
       >
-        Previous
-      </Button>
-      <Button
+        <Tooltip title="Previous page">
+          <ArrowBackIcon />
+        </Tooltip>
+      </IconButton>
+      <IconButton
         disabled={!hasNextPage}
         onClick={() => {
           setQuery({
@@ -34,8 +38,10 @@ export default function PrevNext({ pageInfo }: PrevNextProps) {
           });
         }}
       >
-        Next
-      </Button>
-    </ButtonGroup>
+        <Tooltip title="Next page">
+          <ArrowForwardIcon />
+        </Tooltip>
+      </IconButton>
+    </Box>
   );
 }

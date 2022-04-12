@@ -4,6 +4,10 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Navigation from "~/components/Menu/components/Navigation";
 import useLayout from "~/components/Layout/hooks/use-layout-context";
 
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import TwitterIcon from "@mui/icons-material/Twitter";
+import EmailIcon from "@mui/icons-material/Email";
+
 export default function Menu({ width }: MenuProps) {
   const { layoutState, setLayoutState } = useLayout();
   const { isMenuOpen } = layoutState;
@@ -14,10 +18,11 @@ export default function Menu({ width }: MenuProps) {
       isMenuOpen: !isMenuOpen,
     });
   }
-
   return (
     <Drawer
       sx={{
+        display: "flex",
+        height: "100%",
         width: "100%",
         "& .MuiDrawer-paper": {
           overflow: "hidden",
@@ -45,16 +50,40 @@ export default function Menu({ width }: MenuProps) {
     >
       <Box
         sx={{
-          position: "fixed",
-          right: (width - 48) / 2,
-          top: 24,
+          display: "flex",
         }}
       >
-        <IconButton size="large" aria-label="Menu" onClick={handleToggleMenu}>
-          <MenuIcon />
-        </IconButton>
-      </Box>
-      <Box>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            p: 2,
+          }}
+        >
+          <IconButton size="large" aria-label="Menu" onClick={handleToggleMenu}>
+            <MenuIcon />
+          </IconButton>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "flex-end",
+              alignItems: "center",
+              flex: 1,
+              mb: 3,
+            }}
+          >
+            <IconButton size="small">
+              <LinkedInIcon />
+            </IconButton>
+            <IconButton size="small">
+              <TwitterIcon />
+            </IconButton>
+            <IconButton size="small">
+              <EmailIcon />
+            </IconButton>
+          </Box>
+        </Box>
         <Navigation />
       </Box>
     </Drawer>

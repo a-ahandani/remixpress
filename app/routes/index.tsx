@@ -1,4 +1,5 @@
 import { useLoaderData } from "remix";
+import { Box } from "@mui/material";
 import { getPosts } from "~/api/getPosts";
 import qs from "query-string";
 
@@ -22,15 +23,15 @@ export default function Posts() {
 
   return (
     <div>
-      <PrevNext pageInfo={pageInfo} />
-
       <Typography variant="h1">Posts</Typography>
       <div>
         {nodes.map(({ id, ...rest }) => (
           <Excerpt {...rest} key={id} />
         ))}
       </div>
-      <PrevNext pageInfo={pageInfo} />
+      <Box sx={{ m: 2, display: "flex", justifyContent: "center" }}>
+        <PrevNext pageInfo={pageInfo} />
+      </Box>
     </div>
   );
 }
