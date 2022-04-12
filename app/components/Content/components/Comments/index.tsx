@@ -1,7 +1,7 @@
 import Comment from "./components/Comment";
 import CreateComment from "./components/CreateComment";
 import { isEmpty } from "lodash";
-import { Box } from "@mui/material";
+import { Box, Divider, Typography } from "@mui/material";
 
 import type { CommentsProps } from "./types";
 export default function Comments({
@@ -11,6 +11,9 @@ export default function Comments({
 }: CommentsProps) {
   return (
     <div id="comments">
+      <Divider sx={{ mb: 3 }} light variant="fullWidth" textAlign="center">
+        <Typography variant="caption">COMMENTS</Typography>
+      </Divider>
       {!child && <CreateComment commentOn={databaseId} />}
       {comments?.nodes?.map((comment) => {
         const {

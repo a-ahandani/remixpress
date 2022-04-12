@@ -22,15 +22,20 @@ export default function NavLink({ to, children, ...rest }: NavLinkProps) {
       variant="h5"
       to={to}
       color="text.primary"
+      {...rest}
       sx={{
-        my: 1,
+        my: { xs: 1, sm: 1 },
         mx: 1.5,
         textDecoration: "none",
         display: "block",
         pb: 1,
-        pl: 6,
+        px: 6,
+        fontSize: (theme) => ({
+          xs: theme.typography.h6.fontSize,
+          sm: theme.typography.h5.fontSize,
+        }),
+        ...rest?.sx,
       }}
-      {...rest}
     >
       {children}
     </Link>

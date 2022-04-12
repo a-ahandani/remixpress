@@ -1,7 +1,6 @@
-import { useLoaderData, Link as RmxLink } from "remix";
-import { Button, Box, Typography } from "@mui/material";
+import { useLoaderData } from "remix";
+import { Box } from "@mui/material";
 import type { LoaderFunction, ActionFunction } from "remix";
-import { ArrowBackOutlined } from "@mui/icons-material";
 import { getNode } from "~/api/getNode";
 import type { Node } from "~/types/posts";
 import { createComment } from "~/api/createComment";
@@ -10,6 +9,7 @@ import Comments from "~/components/Content/components/Comments";
 import Author from "~/components/Content/components/Author";
 import Taxonomies from "~/components/Content/components/Taxonomies";
 import Body from "~/components/Content/components/Body";
+import BackToBlog from "~/components/Content/components/BackToBlog";
 
 export const loader: LoaderFunction = async ({ params }) => {
   return getNode({ uri: params.uri as string });
@@ -27,16 +27,17 @@ export default function PostUri() {
 
   return (
     <div>
-      <Button
-        component={RmxLink}
-        disableRipple
-        variant="text"
-        to={"/"}
-        startIcon={<ArrowBackOutlined />}
+      <BackToBlog />
+      <Title
+        sx={{
+          fontSize: (theme) => ({
+            xs: theme.typography.h4.fontSize,
+            sm: theme.typography.h3.fontSize,
+            md: theme.typography.h2.fontSize,
+          }),
+        }}
+        variant="h2"
       >
-        Back to blog
-      </Button>
-      <Title sx={{ mb: 1 }} variant="h2">
         {title}
       </Title>
       <Box sx={{ mb: 5 }}>

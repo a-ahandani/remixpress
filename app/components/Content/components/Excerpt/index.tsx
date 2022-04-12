@@ -1,5 +1,5 @@
 import { Link as RmxLink } from "remix";
-import { Box, IconButton, Badge, Button } from "@mui/material";
+import { Box, IconButton, Badge } from "@mui/material";
 import { Link } from "@mui/material";
 import Body from "~/components/Content/components/Body";
 import Title from "~/components/Content/components/Title";
@@ -18,11 +18,14 @@ export default function Excerpt({
   categories,
   tags,
   hideCommentsButton,
+  TitleProps,
 }: ExcerptProps) {
   return (
-    <Box sx={{ mt: 4, ml: 3 }}>
+    <Box sx={{ mt: 4 }}>
       <Date gutterBottom date={date} sx={{ display: "flex", width: "100%" }} />
-      <Title to={uri}>{title}</Title>
+      <Title {...TitleProps} to={uri}>
+        {title}
+      </Title>
 
       <Taxonomies data={tags?.nodes} />
 

@@ -24,6 +24,7 @@ export default function Logo({
   description,
   hideDescription,
   title,
+  LogoTypographyProps,
   ...rest
 }: LogoProps) {
   const settings = useSettings();
@@ -51,7 +52,12 @@ export default function Logo({
       }}
     >
       <Typography
-        sx={{ fontWeight: "bold", fontSize: LOGO_SIZES[size] }}
+        {...LogoTypographyProps}
+        sx={{
+          fontWeight: "bold",
+          fontSize: LOGO_SIZES[size],
+          ...LogoTypographyProps?.sx,
+        }}
         variant="h5"
       >
         {settings.state === "loading" ? (
