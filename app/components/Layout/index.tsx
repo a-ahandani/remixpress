@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 import { useTransition } from "remix";
 import Logo from "~/components/Logo";
 import LayoutProvider from "~/components/Layout/components/LayoutProvider";
-import { Container, AppBar, Toolbar, Box, LinearProgress } from "@mui/material";
+import { Container, AppBar, Toolbar, Box } from "@mui/material";
 import Menu from "~/components/Menu";
 
 const MENU_WIDTH = 80;
@@ -30,12 +30,6 @@ export default function Layout({ children }: { children: ReactNode }) {
               </Box>
             </Toolbar>
           </AppBar>
-          {isLoading && (
-            <Box sx={{ height: 2, mb: "-2px" }}>
-              <LinearProgress sx={{ height: 2 }} color="inherit" />
-            </Box>
-          )}
-
           <Container maxWidth="md">
             <Box sx={{ my: 4 }}>{children}</Box>
           </Container>
