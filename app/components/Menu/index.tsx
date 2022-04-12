@@ -7,6 +7,7 @@ import useLayout from "~/components/Layout/hooks/use-layout-context";
 
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import TwitterIcon from "@mui/icons-material/Twitter";
+import GitHubIcon from "@mui/icons-material/GitHub";
 import EmailIcon from "@mui/icons-material/Email";
 
 export default function Menu({ width }: MenuProps) {
@@ -75,10 +76,13 @@ export default function Menu({ width }: MenuProps) {
             }}
           >
             <IconButton size="small">
-              <LinkedInIcon fontSize="small" />
+              <GitHubIcon fontSize="small" />
             </IconButton>
             <IconButton size="small">
               <TwitterIcon fontSize="small" />
+            </IconButton>
+            <IconButton size="small">
+              <LinkedInIcon fontSize="small" />
             </IconButton>
             <IconButton size="small">
               <EmailIcon fontSize="small" />
