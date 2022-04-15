@@ -1,4 +1,4 @@
-import { CreateCommentInput, User } from "~/types/wordpressTypes";
+import { CreateCommentInput } from "~/types/wordpressTypes";
 
 export type Query = {
   limit?: number | null;
@@ -24,6 +24,19 @@ export type Comment = {
   databaseId?: number;
   author: Connection<Commenter>;
   replies?: ListConnection<Comment>;
+};
+
+export type Avatar = {
+  foundAvatar: boolean;
+  size: number;
+  url: string;
+};
+
+export type User = {
+  firstName: string;
+  lastName: string;
+  description?: string;
+  avatar?: Avatar;
 };
 export type Comments = ListConnection<Comment>;
 

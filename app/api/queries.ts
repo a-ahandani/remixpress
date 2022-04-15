@@ -43,11 +43,9 @@ export const TAG = gql`
 `;
 export const AUTHOR = gql`
   fragment Author on User {
-    avatar {
+    avatar(size: 300) {
       url
       size
-      scheme
-      height
       foundAvatar
     }
     description

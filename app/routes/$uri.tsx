@@ -53,7 +53,8 @@ export default function PostUri() {
       <Box>
         <Taxonomies data={tags?.nodes} />
       </Box>
-      <Author data={author?.node} />
+
+      {author?.node && <Author data={author.node} />}
       <Comments databaseId={databaseId} comments={comments} />
     </div>
   );
