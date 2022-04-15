@@ -1,5 +1,6 @@
 import { Link as RmxLink } from "remix";
 import { Box, IconButton, Badge } from "@mui/material";
+import CommentsDisabledIcon from "@mui/icons-material/CommentsDisabled";
 import { Link } from "@mui/material";
 import Body from "~/components/Content/components/Body";
 import Title from "~/components/Content/components/Title";
@@ -18,6 +19,7 @@ export default function Excerpt({
   categories,
   tags,
   hideCommentsButton,
+  commentStatus,
   TitleProps,
 }: ExcerptProps) {
   return (
@@ -32,20 +34,28 @@ export default function Excerpt({
       <Body>{excerpt}</Body>
 
       {!hideCommentsButton && (
-        <Link component={RmxLink} to={`${uri}#comments`}>
-          <IconButton sx={{ mr: 1 }}>
-            <Badge
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "left",
-              }}
-              badgeContent={commentCount}
-              color="secondary"
-            >
+        <IconButton
+          LinkComponent={Link}
+          component={RmxLink}
+          to={`${uri}#comments`}
+          disabled={commentStatus == "closed"}
+          sx={{ mr: 1 }}
+        >
+          <Badge
+            anchorOrigin={{
+              vertical: "top",
+              horizontal: "left",
+            }}
+            badgeContent={commentCount}
+            color="secondary"
+          >
+            {commentStatus == "closed" ? (
+              <CommentsDisabledIcon />
+            ) : (
               <ModeCommentIcon />
-            </Badge>
-          </IconButton>
-        </Link>
+            )}
+          </Badge>
+        </IconButton>
       )}
 
       <Taxonomies

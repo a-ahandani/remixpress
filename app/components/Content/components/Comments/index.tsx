@@ -8,11 +8,14 @@ export default function Comments({
   comments,
   child,
   databaseId,
+  commentStatus,
 }: CommentsProps) {
   return (
     <div id="comments">
       <Divider sx={{ mb: 3 }} light variant="fullWidth" textAlign="center">
-        <Typography variant="caption">COMMENTS</Typography>
+        <Typography variant="caption">
+          {commentStatus === "open" ? "COMMENTS" : "COMMENTS ARE CLOSED"}
+        </Typography>
       </Divider>
       {!child && <CreateComment commentOn={databaseId} />}
       {comments?.nodes?.map((comment) => {

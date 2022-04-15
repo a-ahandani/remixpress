@@ -22,9 +22,16 @@ export const action: ActionFunction = async ({ request }) => {
 };
 
 export default function PostUri() {
-  const { title, content, comments, databaseId, categories, tags, author } =
-    useLoaderData<Node>();
-
+  const {
+    title,
+    content,
+    comments,
+    databaseId,
+    categories,
+    tags,
+    author,
+    commentStatus,
+  } = useLoaderData<Node>();
   return (
     <div>
       <BackToBlog />
@@ -53,9 +60,12 @@ export default function PostUri() {
       <Box>
         <Taxonomies data={tags?.nodes} />
       </Box>
-
       {author?.node && <Author data={author.node} />}
-      <Comments databaseId={databaseId} comments={comments} />
+      <Comments
+        databaseId={databaseId}
+        comments={comments}
+        commentStatus={commentStatus}
+      />
     </div>
   );
 }

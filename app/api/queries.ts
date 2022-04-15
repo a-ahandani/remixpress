@@ -84,6 +84,7 @@ export const NODE = gql`
     uri
     content
     date
+    commentStatus
     categories {
       nodes {
         ...Category
@@ -127,6 +128,7 @@ export const NODE = gql`
     uri
     content
     date
+    commentStatus
     comments(first: 100, where: { parent: null }) {
       nodes {
         ...Comment
@@ -177,6 +179,7 @@ export const POSTS = gql`
     excerpt
     slug
     uri
+    commentStatus
     categories {
       nodes {
         ...Category

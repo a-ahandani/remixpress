@@ -45,6 +45,7 @@ export type CreateComment = CreateCommentInput;
 export type Author = User;
 
 export type NodeTypes = "Post" | "Category" | "Tag";
+export type CommentStatuses = "closed" | "open";
 
 export type Taxonomy = { uri?: string; name?: string };
 export type Taxonomies = ListConnection<Taxonomy>;
@@ -62,6 +63,7 @@ export type Post = {
   databaseId: number;
   title?: string;
   comments?: Comments;
+  commentStatus: CommentStatuses;
   author?: Connection<Author>;
 };
 export type Posts = ListConnection<Post>;
