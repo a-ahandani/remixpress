@@ -1,53 +1,46 @@
-# Welcome to Remix!
+# ahandani.com
 
-- [Remix Docs](https://remix.run/docs)
+- **Framework**: [Remix](https://remix.run/)
+- **UI Framework**: [MUI](https://mui.com/)
+- **Content**: [Wordpress](https://wordpress.org/)
+- **Deployment**: [Vercel](https://vercel.com)
 
-## Development
+## Overview
 
-From your terminal:
+Briefly, this is a presentation layer (built with awesome technologies like React, Remix, and GraphQL) that uses WordPress as headless CMS.
 
-```sh
-npm run dev
+## Features
+
+- [x] Blog posts
+- [x] Pagination
+- [x] Custom page sizes
+- [x] Blog pages
+- [x] Dynamic menus
+- [x] Tags
+- [x] Categories
+- [x] Custom post types
+- [x] Custom taxonomies
+- [x] Comments
+- [x] Tag/Category/Taxonomy archive page
+- [ ] Pagination for archive pages
+- [ ] Night mode
+
+## How to make it yours
+
+There will be a couple of blog posts on how to create and customize this blog.
+
+## Running Locally
+
+```bash
+$ git clone https://github.com/a-ahandani/ahandani.com.git
+$ cd ahandani.com
+$ npm i
+$ npm run dev
 ```
 
-This starts your app in development mode, rebuilding assets on file changes.
+Create a `.env` file similar to [`.env.example`](https://github.com/leerob/leerob.io/blob/main/.env.example).
 
-## Deployment
+## Cloning / Forking
 
-First, build your app for production:
-
-```sh
-npm run build
-```
-
-Then run the app in production mode:
-
-```sh
-npm start
-```
-
-Now you'll need to pick a host to deploy it to.
-
-### DIY
-
-If you're familiar with deploying node applications, the built-in Remix app server is production-ready.
-
-Make sure to deploy the output of `remix build`
-
-- `build/`
-- `public/build/`
-
-### Using a Template
-
-When you ran `npx create-remix@latest` there were a few choices for hosting. You can run that again to create a new project, then copy over your `app/` folder to the new project that's pre-configured for your target server.
-
-```sh
-cd ..
-# create a new project, and pick a pre-configured host
-npx create-remix@latest
-cd my-new-remix-app
-# remove the new project's app (not the old one!)
-rm -rf app
-# copy your app over
-cp -R ../my-old-remix-app/app app
-```
+- Feel free to take inspiration or copy the code directly!.
+- It is appreciated if you credit the author.
