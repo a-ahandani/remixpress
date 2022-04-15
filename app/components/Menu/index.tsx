@@ -27,7 +27,7 @@ export default function Menu({ width }: MenuProps) {
             transition: (theme) =>
               theme.transitions.create("width", {
                 easing: theme.transitions.easing.sharp,
-                duration: theme.transitions.duration.standard,
+                duration: theme.transitions.duration.shortest,
               }),
           }),
           ...(!isMenuOpen && {
@@ -47,7 +47,11 @@ export default function Menu({ width }: MenuProps) {
       <Box
         sx={{
           display: "flex",
-          backdropFilter: "blur(35px)",
+          backgroundColor: (theme) => ({
+            xs: theme.palette.common.white,
+            md: "transparent",
+          }),
+          backdropFilter: { md: "blur(35px)" },
           "@-moz-document url-prefix()": {
             backgroundColor: (theme) => theme.palette.common.white,
           },
