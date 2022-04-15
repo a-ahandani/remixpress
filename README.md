@@ -25,10 +25,13 @@ Briefly, this is a presentation layer (built with awesome technologies like Reac
 - [x] Tag/Category/Taxonomy archive page
 - [ ] Pagination for archive pages
 - [ ] Night mode
+- [ ] Audio posts
 - [ ] Search
 - [ ] Related posts
 - [ ] Social media buttons
 - [ ] Next/Prev post link
+- [ ] Translations
+- [ ] RTL languages support
 
 ## How to make it yours
 
