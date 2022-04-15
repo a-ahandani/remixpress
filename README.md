@@ -12,6 +12,7 @@ Briefly, this is a presentation layer (built with awesome technologies like Reac
 ## Features
 
 - [x] Blog posts
+- [x] Support for any kind of content like Image/Video/Code blocks/Headings/Quote and ...
 - [x] Pagination
 - [x] Custom page sizes
 - [x] Blog pages
@@ -24,6 +25,10 @@ Briefly, this is a presentation layer (built with awesome technologies like Reac
 - [x] Tag/Category/Taxonomy archive page
 - [ ] Pagination for archive pages
 - [ ] Night mode
+- [ ] Search
+- [ ] Related posts
+- [ ] Social media buttons
+- [ ] Next/Prev post link
 
 ## How to make it yours
 
