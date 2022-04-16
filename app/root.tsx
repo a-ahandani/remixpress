@@ -9,7 +9,7 @@ import {
   useCatch,
 } from "remix";
 import type { MetaFunction } from "remix";
-
+import configs from "../configs";
 import { useNavigate, useLocation } from "react-router-dom";
 import { QueryParamProvider } from "use-query-params";
 import { withEmotionCache } from "@emotion/react";
@@ -124,15 +124,7 @@ export default function App() {
   return (
     <Settings
       defaultSettings={{
-        configs: {
-          siteTitle: "AHANDANI.",
-          secondaryTitle: "AHMAD ESMAEILZADEH AHANDANI",
-          twitter: "@a_ahandani",
-          linkedin: "ahandani",
-          github: "a-ahandani",
-          email: "a@ahandani.com",
-          description: "a tech blog",
-        },
+        configs: configs,
       }}
     >
       <Document>
