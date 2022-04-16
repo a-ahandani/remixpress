@@ -3,7 +3,8 @@ import type { LoaderFunction, ActionFunction } from "remix";
 import { getNode } from "~/api/getNode";
 import type { Node } from "~/types";
 import { createComment } from "~/api/createComment";
-import { Box } from "@mui/material";
+import { Box, Avatar, Typography } from "@mui/material";
+import Date from "~/components/Date";
 import Title from "~/components/Content/components/Title";
 import Comments from "~/components/Content/components/Comments";
 import Author from "~/components/Content/components/Author";
@@ -30,6 +31,7 @@ export default function PostUri() {
     categories,
     tags,
     author,
+    date,
     commentStatus,
   } = useLoaderData<Node>();
   return (
@@ -48,9 +50,25 @@ export default function PostUri() {
       >
         {title}
       </Title>
-      <Box sx={{ mb: 5 }}>
+
+      <Box sx={{ mb: 3 }}>
         <Taxonomies data={tags?.nodes} />
       </Box>
+      {author?.node && (
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            pb: 5,
+          }}
+        >
+          <Avatar sx={{ mr: 1 }} src={author.node.avatar?.url} />
+          <Typography variant="caption">
+            {author.node.firstName} {author?.node.lastName} /
+          </Typography>
+          <Date sx={{ ml: 0.5 }} date={date} />
+        </Box>
+      )}
       <Body>{content}</Body>
       <Box>
         <Taxonomies
