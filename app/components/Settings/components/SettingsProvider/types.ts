@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
-import type { Settings } from "~/api/getSettings";
+import type { SettingsContextProps } from "../../context";
 
-export type SettingsProps = Settings & {};
+export type SettingsProps = SettingsContextProps & {};
 
 export type SettingsProviderProps = {
   children: ReactNode;

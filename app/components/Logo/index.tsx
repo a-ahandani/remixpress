@@ -61,19 +61,11 @@ export default function Logo({
         }}
         variant="h5"
       >
-        {settings.state === "loading" ? (
-          <Skeleton width={140} />
-        ) : (
-          settings.common?.generalSettingsTitle
-        )}
+        {settings.configs?.siteTitle}
       </Typography>
       {!hideDescription && (
         <Typography sx={{ fontWeight: "light" }} variant="caption">
-          {settings.state === "loading" ? (
-            <Skeleton width={220} />
-          ) : (
-            settings.common?.generalSettingsDescription
-          )}
+          {settings.configs?.secondaryTitle}
         </Typography>
       )}
     </Link>

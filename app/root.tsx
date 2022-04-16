@@ -8,9 +8,12 @@ import {
   ScrollRestoration,
   useCatch,
 } from "remix";
+import type { MetaFunction } from "remix";
+
 import { useNavigate, useLocation } from "react-router-dom";
 import { QueryParamProvider } from "use-query-params";
 import { withEmotionCache } from "@emotion/react";
+import useSettings from "~/components/Settings/hooks/use-settings-context";
 import { unstable_useEnhancedEffect as useEnhancedEffect } from "@mui/material";
 import ClientStyleContext from "./lib/client-style-context";
 import Settings from "./components/Settings";
@@ -21,6 +24,34 @@ interface DocumentProps {
   children: ReactNode;
   title?: string;
 }
+
+export const meta: MetaFunction = () => {
+  const settings = useSettings();
+
+  const title = settings.configs?.siteTitle;
+  const description = settings.configs?.description;
+  const keywords = settings.configs?.keywords;
+  const socialMediaImage = settings.configs?.socialMediaImage;
+  const twitter = settings.configs?.twitter;
+
+  return {
+    charset: "utf-8",
+    description,
+    title: title,
+    keywords: keywords,
+    "twitter:image": socialMediaImage,
+    "twitter:title": title,
+    "twitter:description": description,
+    "twitter:creator": twitter,
+    "twitter:site": twitter,
+    "twitter:card": "summary_large_image",
+
+    "og:type": "website",
+    "og:title": title,
+    "og:description": description,
+    "og:image": socialMediaImage,
+  };
+};
 
 const Document = withEmotionCache(
   ({ children, title }: DocumentProps, emotionCache) => {
@@ -48,8 +79,8 @@ const Document = withEmotionCache(
           <meta charSet="utf-8" />
           <meta name="viewport" content="width=device-width,initial-scale=1" />
           <meta name="theme-color" content={theme.palette.primary.main} />
-          {title ? <title>{title}</title> : null}
           <Meta />
+          {title ? <title>{title}</title> : null}
           <Links />
           <meta
             name="emotion-insertion-point"
@@ -91,15 +122,27 @@ const RouteAdapter: React.FC = ({ children }) => {
 
 export default function App() {
   return (
-    <Document>
-      <Settings>
+    <Settings
+      defaultSettings={{
+        configs: {
+          siteTitle: "AHANDANI.",
+          secondaryTitle: "AHMAD ESMAEILZADEH AHANDANI",
+          twitter: "@a_ahandani",
+          linkedin: "ahandani",
+          github: "a-ahandani",
+          email: "a@ahandani.com",
+          description: "a tech blog",
+        },
+      }}
+    >
+      <Document>
         <Layout>
           <QueryParamProvider ReactRouterRoute={RouteAdapter}>
             <Outlet />
           </QueryParamProvider>
         </Layout>
-      </Settings>
-    </Document>
+      </Document>
+    </Settings>
   );
 }
 

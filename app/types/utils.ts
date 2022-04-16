@@ -10,3 +10,11 @@ export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
 };
 export type AtLeastOne<T, U = { [K in keyof T]: Pick<T, K> }> = Partial<T> &
   U[keyof U];
+
+export type ListConnection<T> = {
+  nodes: T[];
+};
+
+export type Connection<T> = {
+  node: T;
+};

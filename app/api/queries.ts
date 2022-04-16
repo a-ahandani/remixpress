@@ -81,10 +81,25 @@ export const NODE = gql`
     id
     databaseId
     title
+    excerpt
     uri
     content
     date
     commentStatus
+    featuredImage {
+      node {
+        uri
+        mediaItemUrl
+        mediaDetails {
+          sizes {
+            file
+            sourceUrl
+            width
+            height
+          }
+        }
+      }
+    }
     categories {
       nodes {
         ...Category

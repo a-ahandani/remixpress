@@ -1,15 +1,59 @@
+import type { ListConnection, Connection } from "./utils";
+
+export type SiteConfigs = {
+  siteTitle?: string;
+  secondaryTitle?: string;
+  twitter?: string;
+  github?: string;
+  email?: string;
+  linkedin?: string;
+  description?: string;
+  keywords?: string;
+  socialMediaImage?: string;
+};
+
 export type Query = {
   limit?: number | null;
   after?: string | null;
   before?: string | null;
 };
 
-export type ListConnection<T> = {
-  nodes: T[];
+export type Pagination = {
+  hasNextPage: boolean;
+  endCursor: string;
+  hasPreviousPage: boolean;
+  startCursor: string;
 };
 
-export type Connection<T> = {
-  node: T;
+export type MenuItem = {
+  title?: string;
+  target?: string;
+  path: string;
+  parentId?: string;
+  parentDatabaseId?: string;
+  order: string;
+  description?: string;
+  id: string;
+  label?: string;
+};
+
+export type Menu = {
+  menuItems: ListConnection<MenuItem> & {
+    name: string;
+    slug: string;
+  };
+};
+
+export type CommonSettings = {
+  generalSettingsTitle: string;
+  generalSettingsLanguage: string;
+  generalSettingsDateFormat: string;
+  generalSettingsDescription: string;
+};
+
+export type Settings = {
+  allSettings?: CommonSettings;
+  menus: ListConnection<Menu>;
 };
 
 export type Commenter = {
@@ -59,6 +103,19 @@ export type Taxonomy = { uri?: string; name?: string };
 
 export type Taxonomies = ListConnection<Taxonomy>;
 
+export type Media = {
+  mediaItemUrl: string;
+  uri?: string;
+  mediaDetails?: {
+    sizes?: {
+      file: string;
+      height: string;
+      sourceUrl: string;
+      width: string;
+    }[];
+  };
+};
+
 export type Post = {
   uri: string;
   id?: string;
@@ -74,6 +131,7 @@ export type Post = {
   comments?: Comments;
   commentStatus: CommentStatuses;
   author?: Connection<Author>;
+  featuredImage?: Connection<Media>;
 };
 
 export type Posts = ListConnection<Post>;

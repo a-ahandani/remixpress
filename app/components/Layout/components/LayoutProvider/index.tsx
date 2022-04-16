@@ -1,4 +1,3 @@
-// @flow
 import { useState, useMemo, useEffect } from "react";
 import LayoutContext from "~/components/Layout/context";
 import { isFunction } from "lodash";

@@ -1,7 +1,9 @@
 import { Box, Drawer, IconButton } from "@mui/material";
 import type { MenuProps } from "./types";
+import { Link } from "remix";
 import Navigation from "~/components/Menu/components/Navigation";
 import useLayout from "~/components/Layout/hooks/use-layout-context";
+import useSettings from "~/components/Settings/hooks/use-settings-context";
 import Logo from "~/components/Logo";
 import MenuButton from "./components/MenuButton";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
@@ -10,6 +12,8 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import EmailIcon from "@mui/icons-material/Email";
 
 export default function Menu({ width }: MenuProps) {
+  const settings = useSettings();
+
   const { layoutState } = useLayout();
   const { isMenuOpen } = layoutState;
 
@@ -97,16 +101,32 @@ export default function Menu({ width }: MenuProps) {
               flex: 1,
             }}
           >
-            <IconButton size="small">
+            <IconButton
+              component={"a"}
+              href={`https://github.com/${settings.configs?.github}`}
+              size="small"
+            >
               <GitHubIcon fontSize="small" />
             </IconButton>
-            <IconButton size="small">
+            <IconButton
+              component={"a"}
+              href={`https://twitter.com/${settings.configs?.twitter}`}
+              size="small"
+            >
               <TwitterIcon fontSize="small" />
             </IconButton>
-            <IconButton size="small">
+            <IconButton
+              component={"a"}
+              href={`https://www.linkedin.com/in/${settings.configs?.linkedin}`}
+              size="small"
+            >
               <LinkedInIcon fontSize="small" />
             </IconButton>
-            <IconButton size="small">
+            <IconButton
+              component={"a"}
+              href={`mailto:${settings.configs?.email}`}
+              size="small"
+            >
               <EmailIcon fontSize="small" />
             </IconButton>
           </Box>

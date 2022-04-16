@@ -1,4 +1,4 @@
-import type { Pagination } from "~/api/getPosts";
+import type { Pagination } from "~/types";
 
 export type PaginationProps = {
   pageInfo: Pagination;

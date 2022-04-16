@@ -1,6 +1,6 @@
-import type { Pagination } from "~/api/getPosts";
+import type { Pagination } from "~/types";
 import { BoxProps } from "@mui/material";
 
-export type PrevNextProps = Pick<BoxProps, "sx"> & {
+export type PrevNextProps = BoxProps & {
   pageInfo: Pagination;
 };

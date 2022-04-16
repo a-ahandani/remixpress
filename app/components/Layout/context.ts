@@ -1,4 +1,3 @@
-// @flow
 import { createContext } from "react";
 import type { LayoutStateProps } from "./components/LayoutProvider/types";
 export interface LayoutContextProps {

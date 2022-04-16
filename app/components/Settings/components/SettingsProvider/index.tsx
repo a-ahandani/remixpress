@@ -1,10 +1,9 @@
-// @flow
-import { useState, useMemo, useEffect } from "react";
+import { useMemo, useEffect } from "react";
 import SettingsContext from "~/components/Settings/context";
 import { useFetcher } from "remix";
 import { isFunction, keyBy } from "lodash";
 import type { SettingsProviderProps } from "./types";
-import type { Settings } from "~/api/getSettings";
+import type { Settings } from "~/types";
 
 function SettingsProvider(props: SettingsProviderProps) {
   const { children, defaultSettings } = props;

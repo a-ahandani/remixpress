@@ -1,16 +1,51 @@
 import { useLoaderData } from "remix";
-import type { LoaderFunction, ActionFunction } from "remix";
+import type { LoaderFunction, ActionFunction, MetaFunction } from "remix";
 import { getNode } from "~/api/getNode";
 import type { Node } from "~/types";
 import { createComment } from "~/api/createComment";
-import { Box, Avatar, Typography } from "@mui/material";
+import { Box, Avatar, Typography, Card, CardMedia } from "@mui/material";
 import Date from "~/components/Date";
 import Title from "~/components/Content/components/Title";
 import Comments from "~/components/Content/components/Comments";
 import Author from "~/components/Content/components/Author";
 import Taxonomies from "~/components/Content/components/Taxonomies";
 import Body from "~/components/Content/components/Body";
+import useSettings from "~/components/Settings/hooks/use-settings-context";
 import BackToBlog from "~/components/Content/components/BackToBlog";
+
+export const meta: MetaFunction = ({ data }: { data: Node }, ...a) => {
+  const settings = useSettings();
+  if (!data) {
+    return {
+      title: "No data",
+    };
+  }
+
+  const title = data.title;
+  const description = data?.excerpt?.replace(/<[^>]*>?/gm, "");
+  const twitter = settings.configs?.twitter;
+  const image = data.featuredImage?.node?.mediaDetails?.sizes?.find(
+    ({ width }) => Number(width) > 300 && Number(width) < 800
+  )?.sourceUrl;
+
+  return {
+    title,
+    description,
+    keywords: data.tags?.nodes.map((tag) => tag.name).join(", "),
+    author: `${data.author?.node.firstName} ${data.author?.node.lastName}`,
+    "twitter:title": title,
+    "twitter:description": description,
+    "twitter:creator": twitter,
+    "twitter:site": twitter,
+    "twitter:image": image,
+    "twitter:card": "summary_large_image",
+
+    "og:type": "website",
+    "og:title": title,
+    "og:description": description,
+    "og:image": image,
+  };
+};
 
 export const loader: LoaderFunction = async ({ params }) => {
   return getNode({ uri: params.uri as string });
@@ -33,7 +68,9 @@ export default function PostUri() {
     author,
     date,
     commentStatus,
+    featuredImage,
   } = useLoaderData<Node>();
+
   return (
     <div>
       <BackToBlog />
@@ -50,7 +87,6 @@ export default function PostUri() {
       >
         {title}
       </Title>
-
       <Box sx={{ mb: 3 }}>
         <Taxonomies data={tags?.nodes} />
       </Box>
@@ -69,6 +105,11 @@ export default function PostUri() {
           <Date sx={{ ml: 0.5 }} date={date} />
         </Box>
       )}
+      {featuredImage?.node.mediaItemUrl && (
+        <Card raised sx={{ mb: 4 }}>
+          <CardMedia component="img" image={featuredImage.node.mediaItemUrl} />
+        </Card>
+      )}
       <Body>{content}</Body>
       <Box>
         <Taxonomies
@@ -80,7 +121,6 @@ export default function PostUri() {
         <Taxonomies data={tags?.nodes} />
       </Box>
       {author?.node && <Author data={author.node} />}
-
       <Comments
         sx={{ mt: 6, pb: 6 }}
         databaseId={databaseId}
