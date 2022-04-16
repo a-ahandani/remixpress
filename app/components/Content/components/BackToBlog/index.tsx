@@ -11,6 +11,7 @@ export default function BackToBlog({}: BackToBlogProps) {
         disableRipple
         variant="text"
         color="inherit"
+        prefetch="intent"
         sx={{ fontSize: (theme) => theme.typography.caption.fontSize }}
         to={"/"}
         startIcon={<ArrowBackOutlined />}

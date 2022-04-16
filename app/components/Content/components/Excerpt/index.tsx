@@ -37,6 +37,7 @@ export default function Excerpt({
         <IconButton
           LinkComponent={Link}
           component={RmxLink}
+          prefetch="intent"
           to={`${uri}#comments`}
           disabled={commentStatus == "closed"}
           sx={{ mr: 1 }}

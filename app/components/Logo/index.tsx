@@ -45,6 +45,7 @@ export default function Logo({
       onClick={handleCloseMenu}
       component={RmxLink}
       to={"/"}
+      prefetch="intent"
       color="text.primary"
       sx={{
         textDecoration: "none",

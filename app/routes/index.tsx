@@ -29,6 +29,7 @@ export default function Posts() {
             sm: theme.typography.h2.fontSize,
           }),
           fontWeight: "bold",
+          mb: 8,
         }}
         variant="h1"
       >

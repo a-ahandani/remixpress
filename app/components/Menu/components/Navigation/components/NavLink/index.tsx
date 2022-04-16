@@ -21,6 +21,7 @@ export default function NavLink({ to, children, ...rest }: NavLinkProps) {
       onClick={handleCloseMenu}
       variant="h5"
       to={to}
+      prefetch="intent"
       color="text.primary"
       {...rest}
       sx={{
