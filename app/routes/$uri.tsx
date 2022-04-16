@@ -1,9 +1,9 @@
 import { useLoaderData } from "remix";
-import { Box } from "@mui/material";
 import type { LoaderFunction, ActionFunction } from "remix";
 import { getNode } from "~/api/getNode";
-import type { Node } from "~/types/posts";
+import type { Node } from "~/types";
 import { createComment } from "~/api/createComment";
+import { Box } from "@mui/material";
 import Title from "~/components/Content/components/Title";
 import Comments from "~/components/Content/components/Comments";
 import Author from "~/components/Content/components/Author";
@@ -36,6 +36,7 @@ export default function PostUri() {
     <div>
       <BackToBlog />
       <Title
+        gutterBottom
         sx={{
           fontSize: (theme) => ({
             xs: theme.typography.h4.fontSize,
@@ -57,11 +58,13 @@ export default function PostUri() {
           data={categories?.nodes}
         />
       </Box>
-      <Box>
+      <Box sx={{ py: 2 }}>
         <Taxonomies data={tags?.nodes} />
       </Box>
       {author?.node && <Author data={author.node} />}
+
       <Comments
+        sx={{ mt: 6, pb: 6 }}
         databaseId={databaseId}
         comments={comments}
         commentStatus={commentStatus}

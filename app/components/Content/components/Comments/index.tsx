@@ -9,15 +9,24 @@ export default function Comments({
   child,
   databaseId,
   commentStatus,
+  sx,
 }: CommentsProps) {
+  const canCreate = commentStatus !== "closed";
   return (
-    <div id="comments">
-      <Divider sx={{ mb: 3 }} light variant="fullWidth" textAlign="center">
-        <Typography variant="caption">
-          {commentStatus === "open" ? "COMMENTS" : "COMMENTS ARE CLOSED"}
-        </Typography>
-      </Divider>
-      {!child && <CreateComment commentOn={databaseId} />}
+    <Box sx={sx} id="comments">
+      {!child && (
+        <>
+          <Divider sx={{ mb: 6 }} light variant="fullWidth" textAlign="center">
+            <Typography variant="caption">
+              {commentStatus === "closed" ? "COMMENTS ARE CLOSED" : "COMMENTS"}
+            </Typography>
+          </Divider>
+
+          {canCreate && (
+            <CreateComment sx={{ mb: 8 }} open commentOn={databaseId} />
+          )}
+        </>
+      )}
       {comments?.nodes?.map((comment) => {
         const {
           content,
@@ -27,13 +36,39 @@ export default function Comments({
           author,
           replies,
         } = comment || {};
+        const hasReplies = !isEmpty(replies?.nodes);
+
         return (
-          <Box sx={{ backgroundColor: "#EEE", borderRadius: 3, p: 2, mb: 1 }}>
-            <Comment key={commentId} author={author} date={date}>
+          <Box
+            sx={{
+              borderRight: (theme) => ({
+                xs: "none",
+                sm:
+                  hasReplies && !child
+                    ? `1px solid ${theme.palette.grey[300]}`
+                    : "none",
+              }),
+              p: 0,
+              mb: 2,
+            }}
+          >
+            <Comment
+              sx={{ px: 0, pb: { xs: 0, sm: 2 } }}
+              key={commentId}
+              author={author}
+              date={date}
+            >
               {content}
             </Comment>
-            <CreateComment parent={commentDatabaseId} commentOn={databaseId} />
-            {!isEmpty(replies?.nodes) && (
+            {canCreate && (
+              <CreateComment
+                sx={{ mb: 2, px: { xs: 0, sm: 2 } }}
+                parent={commentDatabaseId}
+                parentAuthor={author?.node}
+                commentOn={databaseId}
+              />
+            )}
+            {hasReplies && (
               <Box>
                 <Comments databaseId={databaseId} comments={replies} child />
               </Box>
@@ -41,6 +76,6 @@ export default function Comments({
           </Box>
         );
       })}
-    </div>
+    </Box>
   );
 }

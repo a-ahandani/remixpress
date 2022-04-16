@@ -1,10 +1,14 @@
 import { useTransition, useActionData, Form } from "remix";
 import { useEffect, useRef } from "react";
+import ReplyIcon from "@mui/icons-material/Reply";
+import CloseIcon from "@mui/icons-material/Close";
 import {
   TextField,
   Box,
   Grid,
   Button,
+  IconButton,
+  Tooltip,
   Typography,
   Collapse,
 } from "@mui/material";
@@ -13,15 +17,19 @@ import type { CreateCommentProps } from "./types";
 export default function CreateComment({
   commentOn,
   parent,
+  parentAuthor,
+  open: openProp,
+  sx,
 }: CreateCommentProps) {
   const transition = useTransition();
   const actionData = useActionData();
+  const parentAuthorName = parentAuthor?.name;
 
   const isSubmitting = transition.state == "submitting";
   const isReloading = transition.type === "actionReload";
 
   const formRef = useRef<HTMLFormElement | null>(null);
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(openProp);
 
   useEffect(() => {
     if (!isSubmitting) {
@@ -36,25 +44,38 @@ export default function CreateComment({
   }, [open, isReloading]);
 
   return (
-    <Box className="comment-box">
-      <Button
-        size="small"
-        onClick={() => setOpen(!open)}
-        variant="text"
-        disableRipple
-        disableFocusRipple
-        disableTouchRipple
-        disableElevation
-      >
-        Reply
-      </Button>
+    <Box sx={sx}>
+      {parentAuthorName && (
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "flex-end",
+            px: 1,
+          }}
+        >
+          <Tooltip title={open ? "Close" : `Reply to ${parentAuthorName}`}>
+            <IconButton
+              size="small"
+              aria-label={`Reply to ${parentAuthorName}`}
+              onClick={() => setOpen(!open)}
+            >
+              {open ? (
+                <CloseIcon fontSize="small" />
+              ) : (
+                <ReplyIcon fontSize="small" />
+              )}
+            </IconButton>
+          </Tooltip>
+        </Box>
+      )}
       <Collapse in={open}>
         <Form ref={formRef} method="post">
           {parent && <input type="hidden" name="parent" value={parent} />}
           {commentOn && (
             <input type="hidden" name="commentOn" value={commentOn} />
           )}
-          <Grid sx={{ mt: 1 }} container spacing={1}>
+          <Grid sx={{ mt: 1, mb: 3 }} container spacing={1}>
             <Grid
               item
               xs={12}

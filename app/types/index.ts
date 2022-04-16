@@ -1,5 +1,3 @@
-import { CreateCommentInput } from "~/types/wordpressTypes";
-
 export type Query = {
   limit?: number | null;
   after?: string | null;
@@ -9,6 +7,7 @@ export type Query = {
 export type ListConnection<T> = {
   nodes: T[];
 };
+
 export type Connection<T> = {
   node: T;
 };
@@ -17,6 +16,7 @@ export type Commenter = {
   id: string;
   name: string;
 };
+
 export type Comment = {
   content?: string;
   date: string;
@@ -38,16 +38,25 @@ export type User = {
   description?: string;
   avatar?: Avatar;
 };
+
 export type Comments = ListConnection<Comment>;
 
-export type CreateComment = CreateCommentInput;
+export type CreateComment = {
+  commentOn?: number;
+  author?: Commenter;
+  content?: string;
+  authorEmail?: string;
+  parent?: number;
+};
 
 export type Author = User;
 
 export type NodeTypes = "Post" | "Category" | "Tag";
+
 export type CommentStatuses = "closed" | "open";
 
 export type Taxonomy = { uri?: string; name?: string };
+
 export type Taxonomies = ListConnection<Taxonomy>;
 
 export type Post = {
@@ -66,6 +75,7 @@ export type Post = {
   commentStatus: CommentStatuses;
   author?: Connection<Author>;
 };
+
 export type Posts = ListConnection<Post>;
 
 export type Node = {

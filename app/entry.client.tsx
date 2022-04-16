@@ -2,9 +2,9 @@ import { ReactNode } from "react";
 import { useState } from "react";
 import { hydrate } from "react-dom";
 import { RemixBrowser } from "remix";
-import { CacheProvider, ThemeProvider } from "@emotion/react";
+import { CacheProvider } from "@emotion/react";
+import { ThemeProvider } from "@mui/material";
 import CssBaseline from "@mui/material/CssBaseline";
-
 import ClientStyleContext from "./lib/client-style-context";
 import createEmotionCache from "./lib/create-emotion-cache";
 import theme from "./components/Layout/theme";

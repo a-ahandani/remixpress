@@ -1,6 +1,6 @@
 import { gql } from "graphql-request";
 import { graphql } from "~/lib/graphql";
-import type { CreateComment } from "~/types/posts";
+import type { CreateComment } from "~/types";
 
 const CREATE_COMMENT = gql`
   mutation CREATE_COMMENT($input: CreateCommentInput!) {

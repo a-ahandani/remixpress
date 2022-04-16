@@ -4,7 +4,7 @@ import { getPosts } from "~/api/getPosts";
 import qs from "query-string";
 import Title from "~/components/Content/components/Title";
 
-import type { Query } from "~/types/posts";
+import type { Query } from "~/types";
 import type { LoaderFunction } from "remix";
 import type { Posts } from "~/api/getPosts";
 

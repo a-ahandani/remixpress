@@ -1,4 +1,4 @@
-import { Taxonomy } from "~/types/posts";
+import { Taxonomy } from "~/types";
 import type { ChipProps } from "@mui/material";
 
 export type TaxonomiesProps = {

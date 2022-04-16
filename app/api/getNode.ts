@@ -1,6 +1,6 @@
 import { gql } from "graphql-request";
 import { graphql } from "~/lib/graphql";
-import type { Node } from "~/types/posts";
+import type { Node } from "~/types";
 
 import { NODE } from "./queries";
 

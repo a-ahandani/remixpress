@@ -1,7 +1,7 @@
 import { useLoaderData } from "remix";
 import type { LoaderFunction, ActionFunction } from "remix";
 import { getNode } from "~/api/getNode";
-import type { Node } from "~/types/posts";
+import type { Node } from "~/types";
 import { createComment } from "~/api/createComment";
 import Body from "~/components/Content/components/Body";
 import Excerpt from "~/components/Content/components/Excerpt";

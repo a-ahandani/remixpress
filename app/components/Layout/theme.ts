@@ -1,5 +1,5 @@
 import { createTheme } from "@mui/material/styles";
-import { red } from "@mui/material/colors";
+import { red, teal } from "@mui/material/colors";
 import ApercuRegularWoff from "~/resources/fonts/apercu_regular-webfont.woff";
 import ApercuRegularWoff2 from "~/resources/fonts/apercu_regular-webfont.woff2";
 import ApercuBoldWoff from "~/resources/fonts/apercu_bold-webfont.woff";
@@ -30,14 +30,13 @@ const theme = createTheme({
                    url(${ApercuBoldWoff}) format('woff');
               font-weight: bold;
               font-style: bold;
-          
           }
           `,
     },
   },
   palette: {
     primary: {
-      main: "#556cd6",
+      main: "#660644",
     },
     secondary: {
       main: "#ff0067",

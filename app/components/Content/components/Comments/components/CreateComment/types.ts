@@ -1,5 +1,7 @@
-import type { CreateComment } from "~/types/posts";
-
-export type CreateCommentProps = Pick<CreateComment, "commentOn"> & {
-  parent?: number;
-};
+import type { Commenter, CreateComment } from "~/types";
+import type { BoxProps } from "@mui/material";
+export type CreateCommentProps = BoxProps &
+  CreateComment & {
+    open?: boolean;
+    parentAuthor?: Commenter;
+  };

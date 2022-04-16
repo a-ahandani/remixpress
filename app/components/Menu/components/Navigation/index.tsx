@@ -1,7 +1,6 @@
 import Logo from "~/components/Logo";
 import { alpha } from "@mui/material/styles";
 import { Box, MenuList, useMediaQuery } from "@mui/material";
-import bgImage from "~/resources/images/hip-square.png";
 import NavLink from "./components/NavLink";
 import { useTheme } from "@mui/material/styles";
 import useLayout from "~/components/Layout/hooks/use-layout-context";

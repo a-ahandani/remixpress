@@ -1,6 +1,6 @@
 import { gql } from "graphql-request";
 import { graphql } from "~/lib/graphql";
-import type { Query, Node } from "~/types/posts";
+import type { Query, Node } from "~/types";
 import { POSTS } from "./queries";
 
 const GET_POSTS = gql`

@@ -4,7 +4,7 @@ import type { AuthorProps } from "./types";
 export default function Author({ data }: AuthorProps) {
   return (
     <div>
-      <Divider sx={{ mb: 2 }} light variant="fullWidth" textAlign="center">
+      <Divider sx={{ mb: 5 }} light variant="fullWidth" textAlign="center">
         <Typography variant="caption">AUTHOR</Typography>
       </Divider>
       <Card
@@ -18,14 +18,15 @@ export default function Author({ data }: AuthorProps) {
           mb: 2,
         }}
       >
-        <Box sx={{ p: 1, flex: 1, width: "100%" }}>
+        <Box sx={{ flex: 1, width: "100%" }}>
           <CardMedia
+            sx={{ borderRadius: 2, mb: { xs: 2, sm: 0 } }}
             component="img"
             image={data?.avatar?.url}
             alt={`${data?.firstName} ${data?.lastName}`}
           />
         </Box>
-        <Box sx={{ pl: 3, flex: 2.2 }}>
+        <Box sx={{ pl: { xs: 0, sm: 3 }, flex: 2.2 }}>
           <Typography variant="h4" gutterBottom>
             {data?.firstName} {data?.lastName}
           </Typography>
