@@ -7,9 +7,9 @@ import {
   Scripts,
   ScrollRestoration,
   useCatch,
+  useLoaderData,
 } from "remix";
 import type { MetaFunction } from "remix";
-import configs from "../configs";
 import { useNavigate, useLocation } from "react-router-dom";
 import { QueryParamProvider } from "use-query-params";
 import { withEmotionCache } from "@emotion/react";
@@ -120,11 +120,28 @@ const RouteAdapter: React.FC = ({ children }) => {
   return children({ history: adaptedHistory, location });
 };
 
+export async function loader() {
+  return {
+    configs: {
+      gtag: process.env.GTAG,
+      siteTitle: process.env.SITE_TITLE,
+      secondaryTitle: process.env.SECONDARY_TITLE,
+      twitter: process.env.TWITTER,
+      linkedin: process.env.LINKEDIN,
+      github: process.env.GITHUB,
+      email: process.env.EMAIL,
+      description: process.env.DESCRIPTION,
+    },
+  };
+}
+
 export default function App() {
+  const { configs } = useLoaderData();
+
   return (
     <Settings
       defaultSettings={{
-        configs: configs,
+        configs,
       }}
     >
       <Document>
