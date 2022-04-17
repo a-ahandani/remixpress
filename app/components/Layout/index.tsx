@@ -52,19 +52,15 @@ export default function Layout({ children }: { children: ReactNode }) {
                   sx={{
                     flexWrap: "wrap",
                     height: 122,
-                    py: 2,
-                    px: { xs: 2, md: 6 },
                   }}
                 >
-                  <Box sx={{ p: 2 }}>
+                  <Box sx={{ p: 1 }}>
                     <Logo />
                   </Box>
                 </Toolbar>
               </AppBar>
               <Container maxWidth="md">
-                <Box sx={{ my: 4, mx: { xs: 2, sm: 4, md: 3 } }}>
-                  {children}
-                </Box>
+                <Box sx={{ my: 4, mx: { xs: 1, sm: 0 } }}>{children}</Box>
               </Container>
             </Box>
           </Box>
