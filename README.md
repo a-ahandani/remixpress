@@ -23,6 +23,7 @@ Briefly, this is a presentation layer (built with awesome technologies like Reac
 - [x] Custom taxonomies
 - [x] Comments
 - [x] Tag/Category/Taxonomy archive page
+- [x] SEO meta tags
 - [ ] Pagination for archive pages
 - [ ] Night mode
 - [ ] Audio posts
