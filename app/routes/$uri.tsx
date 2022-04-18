@@ -58,8 +58,9 @@ export const action: ActionFunction = async ({ request }) => {
   return createComment(values);
 };
 
-export default function PostUri() {
+export default function NodeUri() {
   const {
+    __typename,
     title,
     content,
     comments,
@@ -91,7 +92,7 @@ export default function PostUri() {
       <Box sx={{ mb: 3 }}>
         <Taxonomies data={tags?.nodes} />
       </Box>
-      {author?.node && (
+      {author?.node && __typename === "Post" && (
         <Box
           sx={{
             display: "flex",
@@ -121,7 +122,7 @@ export default function PostUri() {
       <Box sx={{ py: 2 }}>
         <Taxonomies data={tags?.nodes} />
       </Box>
-      {author?.node && <Author data={author.node} />}
+      {author?.node && __typename === "Post" && <Author data={author.node} />}
       <Comments
         sx={{ mt: 6, pb: 6 }}
         databaseId={databaseId}

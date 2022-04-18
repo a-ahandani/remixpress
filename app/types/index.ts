@@ -95,7 +95,7 @@ export type CreateComment = {
 
 export type Author = User;
 
-export type NodeTypes = "Post" | "Category" | "Tag";
+export type NodeTypes = "Post" | "Category" | "Tag" | "Page";
 
 export type CommentStatuses = "closed" | "open";
 

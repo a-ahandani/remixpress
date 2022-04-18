@@ -144,6 +144,11 @@ export const NODE = gql`
     content
     date
     commentStatus
+    author {
+      node {
+        ...Author
+      }
+    }
     comments(first: 100, where: { parent: null }) {
       nodes {
         ...Comment
