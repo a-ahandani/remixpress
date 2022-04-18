@@ -98,32 +98,30 @@ const Document = withEmotionCache(
   }
 );
 
+// https://github.com/pbeshai/use-query-params/issues/196
+// @ts-ignore
 const RouteAdapter: React.FC = ({ children }) => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const adaptedHistory = useMemo(
-    () => ({
+  const adaptedHistory = useMemo(() => {
+    return {
       replace(location: any) {
         navigate(location, { replace: true, state: location.state });
       },
       push(location: any) {
         navigate(location, { replace: false, state: location.state });
       },
-    }),
-    [navigate]
-  );
-  // https://github.com/pbeshai/use-query-params/issues/196
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+    };
+  }, [navigate]);
+
   return children({ history: adaptedHistory, location });
 };
 
 export async function loader() {
   return {
     configs: {
-      gtag: process.env.GTAG,
+      googleTrackingId: process.env.GOOGLE_TRACKING_ID,
       siteTitle: process.env.SITE_TITLE,
       secondaryTitle: process.env.SECONDARY_TITLE,
       twitter: process.env.TWITTER,
@@ -140,19 +138,19 @@ export default function App() {
   const { configs } = useLoaderData();
 
   return (
-    <Settings
-      defaultSettings={{
-        configs,
-      }}
-    >
-      <Document>
+    <Document>
+      <Settings
+        defaultSettings={{
+          configs,
+        }}
+      >
         <Layout>
           <QueryParamProvider ReactRouterRoute={RouteAdapter}>
             <Outlet />
           </QueryParamProvider>
         </Layout>
-      </Document>
-    </Settings>
+      </Settings>
+    </Document>
   );
 }
 

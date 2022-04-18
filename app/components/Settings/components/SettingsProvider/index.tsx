@@ -2,8 +2,13 @@ import { useMemo, useEffect } from "react";
 import SettingsContext from "~/components/Settings/context";
 import { useFetcher } from "remix";
 import { isFunction, keyBy } from "lodash";
+import Analytics, { AnalyticsInstance } from "analytics";
+// @ts-ignore
+import googleAnalytics from "@analytics/google-analytics";
 import type { SettingsProviderProps } from "./types";
 import type { Settings } from "~/types";
+
+let ga: AnalyticsInstance;
 
 function SettingsProvider(props: SettingsProviderProps) {
   const { children, defaultSettings } = props;
@@ -12,6 +17,27 @@ function SettingsProvider(props: SettingsProviderProps) {
     data: settings,
     state: settingsState,
   } = useFetcher<Settings>();
+
+  const analytics = useMemo(() => {
+    if (
+      !ga &&
+      defaultSettings?.configs?.googleTrackingId &&
+      defaultSettings?.configs?.siteTitle
+    ) {
+      ga = Analytics({
+        app: defaultSettings?.configs?.siteTitle,
+        plugins: [
+          googleAnalytics({
+            trackingId: defaultSettings?.configs?.googleTrackingId,
+          }),
+        ],
+      });
+    }
+    return ga;
+  }, [
+    defaultSettings?.configs?.googleTrackingId,
+    defaultSettings?.configs?.siteTitle,
+  ]);
 
   useEffect(() => {
     if (!settings) {
@@ -25,6 +51,7 @@ function SettingsProvider(props: SettingsProviderProps) {
       common: settings?.allSettings,
       menus: keyBy(settings?.menus.nodes, "slug"),
       state: settingsState,
+      analytics,
     };
   }, [settings, settingsState]);
 

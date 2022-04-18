@@ -59,6 +59,8 @@ export const action: ActionFunction = async ({ request }) => {
 };
 
 export default function NodeUri() {
+  const settings = useSettings();
+
   const {
     __typename,
     title,
@@ -71,7 +73,13 @@ export default function NodeUri() {
     date,
     commentStatus,
     featuredImage,
+    uri,
   } = useLoaderData<Node>();
+
+  settings.analytics?.page({
+    url: uri,
+    title,
+  });
 
   return (
     <div>
