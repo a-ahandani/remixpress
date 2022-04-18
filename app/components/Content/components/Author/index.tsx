@@ -18,7 +18,7 @@ export default function Author({ data }: AuthorProps) {
           mb: 2,
         }}
       >
-        <Box sx={{ flex: 1, width: "100%" }}>
+        <Box sx={{ flex: 1, width: "100%", maxWidth: 200 }}>
           <CardMedia
             sx={{ borderRadius: 2, mb: { xs: 2, sm: 0 } }}
             component="img"

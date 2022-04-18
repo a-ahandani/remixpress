@@ -142,8 +142,23 @@ export const NODE = gql`
     title
     uri
     content
+    excerpt
     date
     commentStatus
+    featuredImage {
+      node {
+        uri
+        mediaItemUrl
+        mediaDetails {
+          sizes {
+            file
+            sourceUrl
+            width
+            height
+          }
+        }
+      }
+    }
     author {
       node {
         ...Author

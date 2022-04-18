@@ -30,6 +30,9 @@ export default function CodeBlock({ node }: CodeBlockProps) {
         color: (theme) => theme.palette.common.white,
         px: 0.8,
         borderRadius: 1,
+        a: {
+          color: (theme) => theme.palette.common.white,
+        },
       }}
     >
       {render}
