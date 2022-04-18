@@ -1,5 +1,5 @@
 import { useTransition, useActionData, Form } from "remix";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import ReplyIcon from "@mui/icons-material/Reply";
 import CloseIcon from "@mui/icons-material/Close";
 import {
@@ -10,9 +10,10 @@ import {
   IconButton,
   Tooltip,
   Typography,
+  Snackbar,
   Collapse,
 } from "@mui/material";
-import { useState } from "react";
+
 import type { CreateCommentProps } from "./types";
 export default function CreateComment({
   commentOn,
@@ -23,6 +24,7 @@ export default function CreateComment({
 }: CreateCommentProps) {
   const transition = useTransition();
   const actionData = useActionData();
+
   const parentAuthorName = parentAuthor?.name;
 
   const isSubmitting = transition.state == "submitting";
@@ -30,6 +32,7 @@ export default function CreateComment({
 
   const formRef = useRef<HTMLFormElement | null>(null);
   const [open, setOpen] = useState(openProp);
+  const [alert, setAlert] = useState(false);
 
   useEffect(() => {
     if (!isSubmitting) {
@@ -38,8 +41,8 @@ export default function CreateComment({
   }, [isSubmitting]);
 
   useEffect(() => {
-    if (open && isReloading) {
-      setOpen(false);
+    if (open && isReloading && actionData.success) {
+      setAlert(true);
     }
   }, [open, isReloading]);
 
@@ -69,6 +72,7 @@ export default function CreateComment({
           </Tooltip>
         </Box>
       )}
+
       <Collapse in={open}>
         <Form ref={formRef} method="post">
           {parent && <input type="hidden" name="parent" value={parent} />}
@@ -83,6 +87,7 @@ export default function CreateComment({
               sx={{ display: "flex", flexDirection: "column" }}
             >
               <TextField
+                disabled={isSubmitting}
                 label="Name"
                 name="author"
                 size="small"
@@ -90,6 +95,7 @@ export default function CreateComment({
                 sx={{ mb: 1 }}
               />
               <TextField
+                disabled={isSubmitting}
                 label="Email"
                 type="email"
                 placeholder="Enter a valid email address"
@@ -99,6 +105,7 @@ export default function CreateComment({
             </Grid>
             <Grid item xs={12} sm={8}>
               <TextField
+                disabled={isSubmitting}
                 label="Comment"
                 name="content"
                 required
@@ -120,17 +127,27 @@ export default function CreateComment({
                   Emails wont be published.
                 </Typography>
                 <Button
+                  disabled={isSubmitting}
                   size="small"
                   variant="contained"
                   type="submit"
                   disableElevation
                 >
-                  Submit
+                  {isSubmitting ? "Submitting..." : "Submit"}
                 </Button>
               </Box>
             </Grid>
           </Grid>
         </Form>
+        <Snackbar
+          open={alert}
+          onClose={() => {
+            setAlert(false);
+          }}
+          anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+          autoHideDuration={2000}
+          message="Comment submitted successfully."
+        />
       </Collapse>
     </Box>
   );
