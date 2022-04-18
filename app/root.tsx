@@ -131,6 +131,7 @@ export async function loader() {
       github: process.env.GITHUB,
       email: process.env.EMAIL,
       description: process.env.DESCRIPTION,
+      socialMediaImage: process.env.SOCIAL_MEDIA_IMAGE,
     },
   };
 }

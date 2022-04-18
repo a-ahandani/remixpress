@@ -21,9 +21,10 @@ export const meta: MetaFunction = ({ data }: { data: Node }, ...a) => {
     };
   }
 
-  const title = data.title;
   const description = data?.excerpt?.replace(/<[^>]*>?/gm, "");
   const twitter = settings.configs?.twitter;
+  const author = `${data.author?.node.firstName} ${data.author?.node.lastName}`;
+  const title = `${data.title} - ${author}`;
   const image = data.featuredImage?.node?.mediaDetails?.sizes?.find(
     ({ width }) => Number(width) > 300 && Number(width) < 800
   )?.sourceUrl;
@@ -32,7 +33,7 @@ export const meta: MetaFunction = ({ data }: { data: Node }, ...a) => {
     title,
     description,
     keywords: data.tags?.nodes.map((tag) => tag.name).join(", "),
-    author: `${data.author?.node.firstName} ${data.author?.node.lastName}`,
+    author: author,
     "twitter:title": title,
     "twitter:description": description,
     "twitter:creator": twitter,
