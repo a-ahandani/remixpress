@@ -24,6 +24,7 @@ Briefly, this is a presentation layer (built with awesome technologies like Reac
 - [x] Comments
 - [x] Tag/Category/Taxonomy archive page
 - [x] SEO meta tags
+- [x] Google analytics
 - [ ] Pagination for archive pages
 - [ ] Night mode
 - [ ] Audio posts
