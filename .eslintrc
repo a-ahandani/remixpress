@@ -1,7 +1,3 @@
 {
-  "extends": [
-    "@remix-run/eslint-config",
-    "@remix-run/eslint-config/node",
-    "plugin:react-hooks/recommended"
-  ]
+  "extends": ["@remix-run/eslint-config", "@remix-run/eslint-config/node"]
 }

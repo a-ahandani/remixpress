@@ -36,7 +36,6 @@
     "@types/react-gravatar": "^2.6.10",
     "@types/react-syntax-highlighter": "^13.5.2",
     "eslint": "^8.13.0",
-    "eslint-plugin-react-hooks": "^4.4.0",
     "typescript": "^4.6.3"
   },
   "engines": {
