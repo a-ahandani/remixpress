@@ -27,7 +27,6 @@ interface DocumentProps {
 
 export const meta: MetaFunction = () => {
   const settings = useSettings();
-
   const title = settings.configs?.siteTitle;
   const description = settings.configs?.description;
   const keywords = settings.configs?.keywords;
@@ -138,19 +137,19 @@ export default function App() {
   const { configs } = useLoaderData();
 
   return (
-    <Document>
-      <Settings
-        defaultSettings={{
-          configs,
-        }}
-      >
+    <Settings
+      defaultSettings={{
+        configs,
+      }}
+    >
+      <Document>
         <Layout>
           <QueryParamProvider ReactRouterRoute={RouteAdapter}>
             <Outlet />
           </QueryParamProvider>
         </Layout>
-      </Settings>
-    </Document>
+      </Document>
+    </Settings>
   );
 }
 
