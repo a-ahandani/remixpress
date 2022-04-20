@@ -15,11 +15,13 @@ export const loader: LoaderFunction = async ({ params }) => {
 export default function TaxonomyUri() {
   const { posts, name, description, __typename, uri, ...rest } =
     useLoaderData<Node>();
+
   useAnalytics({
     type: __typename,
     title: name,
     url: uri,
   });
+
   return (
     <div>
       <BackToBlog />
@@ -29,7 +31,6 @@ export default function TaxonomyUri() {
           fontSize: (theme) => ({
             xs: theme.typography.h4.fontSize,
             sm: theme.typography.h3.fontSize,
-            md: theme.typography.h2.fontSize,
           }),
           fontWeight: "bold",
         }}
