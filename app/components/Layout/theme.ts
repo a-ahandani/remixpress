@@ -1,37 +1,47 @@
 import { createTheme } from "@mui/material/styles";
-import { red, teal } from "@mui/material/colors";
-import ApercuRegularWoff from "~/resources/fonts/apercu_regular-webfont.woff";
-import ApercuRegularWoff2 from "~/resources/fonts/apercu_regular-webfont.woff2";
-import ApercuBoldWoff from "~/resources/fonts/apercu_bold-webfont.woff";
-import ApercuBoldWoff2 from "~/resources/fonts/apercu_bold-webfont.woff2";
+import { red } from "@mui/material/colors";
 
 // Create a theme instance.
 const theme = createTheme({
   typography: {
-    fontFamily: "apercu, Arial",
     body1: {
-      fontSize: "1.0625rem",
-      lineHeight: "1.7",
+      fontFamily: "Poppins, Arial",
     },
-  },
-  components: {
-    MuiCssBaseline: {
-      styleOverrides: `
-            @font-face {
-                font-family: 'apercu';
-                src: url(${ApercuRegularWoff2}) format('woff2'),
-                    url(${ApercuRegularWoff}) format('woff');
-                font-weight: light;
-                font-style: normal; 
-            },
-            @font-face {
-              font-family: 'apercu';
-              src: url(${ApercuBoldWoff2}) format('woff2'),
-                   url(${ApercuBoldWoff}) format('woff');
-              font-weight: bold;
-              font-style: bold;
-          }
-          `,
+    body2: {},
+    button: {},
+    caption: {
+      fontFamily: "Poppins, Arial",
+      fontWeight: 400,
+    },
+    h1: {
+      fontFamily: "PT Serif, Arial",
+      fontWeight: 700,
+      fontSize: "3.4rem",
+    },
+    h2: {
+      fontFamily: "PT Serif, Arial",
+      fontWeight: 700,
+      fontSize: "2.9rem",
+    },
+    h3: {
+      fontFamily: "PT Serif, Arial",
+      fontWeight: 700,
+      fontSize: "2.4rem",
+    },
+    h4: {
+      fontFamily: "PT Serif, Arial",
+      fontWeight: 700,
+      fontSize: "2rem",
+    },
+    h5: {
+      fontFamily: "PT Serif, Arial",
+      fontWeight: 700,
+      fontSize: "1.5rem",
+    },
+    h6: {
+      fontFamily: "PT Serif, Arial",
+      fontWeight: 700,
+      fontSize: "1rem",
     },
   },
   palette: {

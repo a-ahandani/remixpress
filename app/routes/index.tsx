@@ -35,7 +35,6 @@ export default function Posts() {
             xs: theme.typography.h3.fontSize,
             sm: theme.typography.h2.fontSize,
           }),
-          fontWeight: "bold",
           mb: 8,
         }}
         variant="h1"
@@ -45,7 +44,18 @@ export default function Posts() {
 
       <div>
         {nodes.map(({ id, ...rest }) => (
-          <Excerpt {...rest} key={id} />
+          <Excerpt
+            TitleProps={{
+              gutterBottom: true,
+              sx: {
+                fontSize: (theme) => ({
+                  xs: theme.typography.h5.fontSize,
+                }),
+              },
+            }}
+            {...rest}
+            key={id}
+          />
         ))}
       </div>
       <Box sx={{ p: 6, display: "flex", justifyContent: "center" }}>

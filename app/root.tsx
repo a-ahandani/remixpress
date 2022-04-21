@@ -24,7 +24,14 @@ interface DocumentProps {
   children: ReactNode;
   title?: string;
 }
-
+export function links() {
+  return [
+    {
+      rel: "stylesheet",
+      href: "https://fonts.googleapis.com/css2?family=PT+Serif:wght@700&family=Poppins:wght@400;700&display=swap",
+    },
+  ];
+}
 export const meta: MetaFunction = () => {
   const settings = useSettings();
   const title = settings.configs?.siteTitle;

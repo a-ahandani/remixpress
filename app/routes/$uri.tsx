@@ -90,10 +90,10 @@ export default function NodeUri() {
           fontSize: (theme) => ({
             xs: theme.typography.h4.fontSize,
             sm: theme.typography.h3.fontSize,
+            md: theme.typography.h2.fontSize,
           }),
-          fontWeight: "bold",
         }}
-        variant="h2"
+        variant="h1"
       >
         {title}
       </Title>

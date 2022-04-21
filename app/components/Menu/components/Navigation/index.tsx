@@ -1,6 +1,6 @@
 import Logo from "~/components/Logo";
 import { alpha } from "@mui/material/styles";
-import { Box, MenuList, useMediaQuery } from "@mui/material";
+import { Box, MenuList, Typography, useMediaQuery } from "@mui/material";
 import NavLink from "./components/NavLink";
 import { useTheme } from "@mui/material/styles";
 import useLayout from "~/components/Layout/hooks/use-layout-context";
@@ -88,7 +88,7 @@ export default function Navigation({ ...rest }: NavigationProps) {
               (menu) => {
                 return (
                   <NavLink key={menu.id} to={menu.path}>
-                    {menu.label}
+                    <Typography variant="body1">{menu.label}</Typography>
                   </NavLink>
                 );
               }
