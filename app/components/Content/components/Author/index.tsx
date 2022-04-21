@@ -1,5 +1,6 @@
-import { Box, Divider, Typography, Card, CardMedia } from "@mui/material";
+import { Box, Divider, Typography, Card, CardMedia, Link } from "@mui/material";
 import type { AuthorProps } from "./types";
+import { Link as RmxLink } from "remix";
 
 export default function Author({ data }: AuthorProps) {
   return (
@@ -19,18 +20,36 @@ export default function Author({ data }: AuthorProps) {
         }}
       >
         <Box sx={{ flex: 1, width: "100%", maxWidth: 200 }}>
-          <CardMedia
-            sx={{ borderRadius: 2, mb: { xs: 2, sm: 0 } }}
-            component="img"
-            image={data?.avatar?.url}
-            alt={`${data?.firstName} ${data?.lastName}`}
-          />
+          <Link
+            component={RmxLink}
+            variant="h5"
+            to={"/about/"}
+            prefetch="intent"
+            color="text.primary"
+          >
+            <CardMedia
+              sx={{ borderRadius: 2, mb: { xs: 2, sm: 0 } }}
+              component="img"
+              image={data?.avatar?.url}
+              alt={`${data?.firstName} ${data?.lastName}`}
+            />
+          </Link>
         </Box>
+
         <Box sx={{ pl: { xs: 0, sm: 3 }, flex: 2.2 }}>
           <Typography variant="h4" gutterBottom>
             {data?.firstName} {data?.lastName}
           </Typography>
           <Typography variant="body2">{data?.description}</Typography>
+
+          <Link
+            component={RmxLink}
+            to={"/about/"}
+            prefetch="intent"
+            color="text.primary"
+          >
+            <Typography variant="body2">read more...</Typography>
+          </Link>
         </Box>
       </Card>
     </div>
