@@ -12,7 +12,7 @@ Briefly, this is a presentation layer (built with awesome technologies like Reac
 ## Features
 
 - [x] Blog posts
-- [x] Support for any kind of content like Image/Video/Code blocks/Headings/Quote and ...
+- [x] Support for any kind of content like Image/Video/Code blocks/Headings/Quote and ... [(Demo Page)](https://ahandani.com/post-elements)
 - [x] Pagination
 - [x] Custom page sizes
 - [x] Blog pages
