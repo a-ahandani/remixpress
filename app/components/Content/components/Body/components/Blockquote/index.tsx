@@ -10,6 +10,11 @@ export default function Blockquote({ node }: BlockquoteProps) {
         p: 4,
         my: 2,
         backgroundColor: ({ palette }) => palette.grey[100],
+        "& cite": {
+          fontSize: "0.8rem",
+          fontStyle: "normal",
+          marginLeft: 3,
+        },
       }}
     >
       {domToReact(children)}

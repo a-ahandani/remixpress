@@ -66,6 +66,7 @@ const Body: FC<BodyProps> = ({ body, children, sx, ...rest }) => {
       sx={{
         "& a": ({ palette }) => ({
           textDecoration: "none",
+          fontWeight: 600,
           color: palette.primary.main,
         }),
         "& .more-link": {
