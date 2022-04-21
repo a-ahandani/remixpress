@@ -2,7 +2,6 @@ import { useLoaderData } from "remix";
 import type { LoaderFunction } from "remix";
 import { getNode } from "~/api/getNode";
 import type { Node } from "~/types";
-import useAnalytics from "~/components/Settings/hooks/use-analytics";
 import Body from "~/components/Content/components/Body";
 import Excerpt from "~/components/Content/components/Excerpt";
 import Title from "~/components/Content/components/Title";
@@ -15,12 +14,6 @@ export const loader: LoaderFunction = async ({ params }) => {
 export default function TaxonomyUri() {
   const { posts, name, description, __typename, uri, ...rest } =
     useLoaderData<Node>();
-
-  useAnalytics({
-    type: __typename,
-    title: name,
-    url: uri,
-  });
 
   return (
     <div>

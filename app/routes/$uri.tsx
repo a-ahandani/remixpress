@@ -11,7 +11,6 @@ import Author from "~/components/Content/components/Author";
 import Taxonomies from "~/components/Content/components/Taxonomies";
 import Body from "~/components/Content/components/Body";
 import useSettings from "~/components/Settings/hooks/use-settings-context";
-import useAnalytics from "~/components/Settings/hooks/use-analytics";
 import BackToBlog from "~/components/Content/components/BackToBlog";
 
 export const meta: MetaFunction = ({ data }: { data: Node }, ...a) => {
@@ -74,12 +73,6 @@ export default function NodeUri() {
     featuredImage,
     uri,
   } = useLoaderData<Node>();
-
-  useAnalytics({
-    type: __typename,
-    title,
-    url: uri,
-  });
 
   return (
     <div>

@@ -1,4 +1,4 @@
-import { ReactNode, useContext, useMemo } from "react";
+import { ReactNode, useContext, useMemo, useEffect } from "react";
 import {
   Links,
   LiveReload,
@@ -19,6 +19,7 @@ import ClientStyleContext from "./lib/client-style-context";
 import Settings from "./components/Settings";
 import Layout from "./components/Layout";
 import theme from "./components/Layout/theme";
+import * as gtag from "~/lib/gtags.client";
 
 interface DocumentProps {
   children: ReactNode;
@@ -62,6 +63,14 @@ export const meta: MetaFunction = () => {
 const Document = withEmotionCache(
   ({ children, title }: DocumentProps, emotionCache) => {
     const clientStyleData = useContext(ClientStyleContext);
+    const settings = useSettings();
+    const googleTrackingId = settings.configs?.googleTrackingId;
+
+    const location = useLocation();
+
+    useEffect(() => {
+      googleTrackingId && gtag.pageview(location.pathname, googleTrackingId);
+    }, [location]);
 
     // Only executed on client
     useEnhancedEffect(() => {
@@ -94,6 +103,29 @@ const Document = withEmotionCache(
           />
         </head>
         <body>
+          {process.env.NODE_ENV === "development" ? null : (
+            <>
+              <script
+                async
+                src={`https://www.googletagmanager.com/gtag/js?id=${googleTrackingId}`}
+              />
+              <script
+                async
+                id="gtag-init"
+                dangerouslySetInnerHTML={{
+                  __html: `
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${googleTrackingId}', {
+                  page_path: window.location.pathname,
+                });
+              `,
+                }}
+              />
+            </>
+          )}
+
           {children}
           <ScrollRestoration />
           <Scripts />

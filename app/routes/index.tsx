@@ -2,7 +2,6 @@ import { useLoaderData } from "remix";
 import { Box } from "@mui/material";
 import { getPosts } from "~/api/getPosts";
 import qs from "query-string";
-import useAnalytics from "~/components/Settings/hooks/use-analytics";
 import Title from "~/components/Content/components/Title";
 
 import type { Query } from "~/types";
@@ -20,12 +19,6 @@ export const loader: LoaderFunction = async ({ request }) => {
 
 export default function Posts() {
   const { nodes, pageInfo } = useLoaderData<Posts>();
-
-  useAnalytics({
-    type: "home",
-    title: "Home",
-    url: "/",
-  });
 
   return (
     <div>
