@@ -7,7 +7,7 @@ export default function Title({ children, to, sx, ...rest }: TitleProps) {
     <Typography
       component="h1"
       {...(to && { component: Link, prefetch: "intent", to })}
-      variant="h4"
+      variant="h1"
       {...rest}
       sx={{
         width: "100%",

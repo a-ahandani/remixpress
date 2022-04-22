@@ -77,19 +77,7 @@ export default function NodeUri() {
   return (
     <div>
       <BackToBlog />
-      <Title
-        gutterBottom
-        sx={{
-          fontSize: (theme) => ({
-            xs: theme.typography.h4.fontSize,
-            sm: theme.typography.h3.fontSize,
-            md: theme.typography.h2.fontSize,
-          }),
-        }}
-        variant="h1"
-      >
-        {title}
-      </Title>
+      <Title gutterBottom>{title}</Title>
       <Box sx={{ mb: 3 }}>
         <Taxonomies data={tags?.nodes} />
       </Box>

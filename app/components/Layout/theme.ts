@@ -1,8 +1,8 @@
 import { createTheme } from "@mui/material/styles";
 import { red } from "@mui/material/colors";
+const theme = createTheme();
 
-// Create a theme instance.
-const theme = createTheme({
+const customTheme = createTheme({
   typography: {
     body1: {
       fontFamily: "Poppins, Arial",
@@ -16,22 +16,60 @@ const theme = createTheme({
     h1: {
       fontFamily: "PT Serif, Arial",
       fontWeight: 700,
-      fontSize: "3.4rem",
+      [theme.breakpoints.up("xs")]: {
+        fontSize: "2rem",
+      },
+      [theme.breakpoints.up("sm")]: {
+        fontSize: "2.4rem",
+      },
+      [theme.breakpoints.up("md")]: {
+        fontSize: "2.9rem",
+      },
+      [theme.breakpoints.up("lg")]: {
+        fontSize: "3.1rem",
+      },
     },
     h2: {
       fontFamily: "PT Serif, Arial",
       fontWeight: 700,
-      fontSize: "2.9rem",
+      [theme.breakpoints.up("xs")]: {
+        fontSize: "1.75rem",
+      },
+      [theme.breakpoints.up("sm")]: {
+        fontSize: "2rem",
+      },
+      [theme.breakpoints.up("md")]: {
+        fontSize: "2.4rem",
+      },
+      [theme.breakpoints.up("lg")]: {
+        fontSize: "2.9rem",
+      },
     },
     h3: {
       fontFamily: "PT Serif, Arial",
       fontWeight: 700,
-      fontSize: "2.4rem",
+      [theme.breakpoints.up("xs")]: {
+        fontSize: "1.65rem",
+      },
+      [theme.breakpoints.up("md")]: {
+        fontSize: "2rem",
+      },
+      [theme.breakpoints.up("lg")]: {
+        fontSize: "2.4rem",
+      },
     },
     h4: {
       fontFamily: "PT Serif, Arial",
       fontWeight: 700,
-      fontSize: "2rem",
+      [theme.breakpoints.up("xs")]: {
+        fontSize: "1.53rem",
+      },
+      [theme.breakpoints.up("md")]: {
+        fontSize: "1.8rem",
+      },
+      [theme.breakpoints.up("lg")]: {
+        fontSize: "2.1rem",
+      },
     },
     h5: {
       fontFamily: "PT Serif, Arial",
@@ -57,4 +95,4 @@ const theme = createTheme({
   },
 });
 
-export default theme;
+export default customTheme;
