@@ -4,8 +4,7 @@
   "description": "",
   "license": "",
   "dependencies": {
-    "react-router-dom": "^6.3.0",
-    "@analytics/google-analytics": "^0.5.3",
+    "@analytics/google-tag-manager": "^0.5.2",
     "@emotion/cache": "^11.7.1",
     "@emotion/react": "^11.9.0",
     "@emotion/server": "^11.4.0",
@@ -24,6 +23,7 @@
     "query-string": "^7.1.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
+    "react-router-dom": "^6.3.0",
     "react-syntax-highlighter": "^15.5.0",
     "remix": "^1.4.1",
     "tslib": "^2.3.1",

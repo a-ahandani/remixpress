@@ -10,7 +10,7 @@ export type SiteConfigs = {
   description?: string;
   keywords?: string;
   socialMediaImage?: string;
-  googleTrackingId?: string;
+  googleTagManagerId?: string;
 };
 
 export type Query = {

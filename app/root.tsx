@@ -68,7 +68,7 @@ const Document = withEmotionCache(
 
     useEffect(() => {
       if (process.env.NODE_ENV !== "development") {
-        settings?.analytics?.page({ url: location.pathname });
+        settings?.analytics?.page();
       }
     }, [location]);
 
@@ -136,7 +136,7 @@ const RouteAdapter: React.FC = ({ children }) => {
 export async function loader() {
   return {
     configs: {
-      googleTrackingId: process.env.GOOGLE_TRACKING_ID,
+      googleTagManagerId: process.env.GTM_ID,
       siteTitle: process.env.SITE_TITLE,
       secondaryTitle: process.env.SECONDARY_TITLE,
       twitter: process.env.TWITTER,
