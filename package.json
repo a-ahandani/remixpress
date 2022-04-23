@@ -4,6 +4,8 @@
   "description": "",
   "license": "",
   "dependencies": {
+    "react-router-dom": "^6.3.0",
+    "@analytics/google-analytics": "^0.5.3",
     "@emotion/cache": "^11.7.1",
     "@emotion/react": "^11.9.0",
     "@emotion/server": "^11.4.0",
@@ -13,6 +15,7 @@
     "@remix-run/react": "^1.4.1",
     "@remix-run/serve": "^1.4.1",
     "@remix-run/vercel": "^1.4.1",
+    "analytics": "^0.8.1",
     "dayjs": "^1.11.1",
     "dotenv": "^16.0.0",
     "graphql-request": "^4.2.0",

@@ -1,8 +1,10 @@
-import { useMemo, useEffect } from "react";
+import { useMemo, useEffect, useRef } from "react";
 import SettingsContext from "~/components/Settings/context";
 import { useFetcher } from "remix";
 import { isFunction, keyBy } from "lodash";
-
+import Analytics, { AnalyticsInstance } from "analytics";
+//@ts-ignore
+import googleAnalytics from "@analytics/google-analytics";
 import type { SettingsProviderProps } from "./types";
 import type { Settings } from "~/types";
 
@@ -20,9 +22,26 @@ function SettingsProvider(props: SettingsProviderProps) {
     }
   }, [settings]);
 
+  const googleTrackingId = defaultSettings?.configs?.googleTrackingId;
+  const ga = useRef<AnalyticsInstance>();
+
+  const analytics = useMemo(() => {
+    if (!ga.current && googleTrackingId) {
+      ga.current = Analytics({
+        plugins: [
+          googleAnalytics({
+            trackingId: googleTrackingId,
+          }),
+        ],
+      });
+    }
+    return ga.current;
+  }, [googleTrackingId]);
+
   const settingsContext = useMemo(() => {
     return {
       ...defaultSettings,
+      analytics,
       common: settings?.allSettings,
       menus: keyBy(settings?.menus.nodes, "slug"),
       state: settingsState,
