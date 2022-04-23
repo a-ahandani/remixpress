@@ -1,7 +1,9 @@
 import { createContext } from "react";
 import type { CommonSettings, Menu, SiteConfigs } from "~/types";
+import Analytics, { AnalyticsInstance } from "analytics";
 
 export interface SettingsContextProps {
+  analytics?: AnalyticsInstance;
   configs?: SiteConfigs;
   common?: CommonSettings;
   menus?: {

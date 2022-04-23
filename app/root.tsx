@@ -19,7 +19,6 @@ import ClientStyleContext from "./lib/client-style-context";
 import Settings from "./components/Settings";
 import Layout from "./components/Layout";
 import theme from "./components/Layout/theme";
-import * as gtag from "~/lib/gtags.client";
 
 interface DocumentProps {
   children: ReactNode;
@@ -33,6 +32,7 @@ export function links() {
     },
   ];
 }
+
 export const meta: MetaFunction = () => {
   const settings = useSettings();
   const title = settings.configs?.siteTitle;
@@ -59,17 +59,17 @@ export const meta: MetaFunction = () => {
     "og:image": socialMediaImage,
   };
 };
-
 const Document = withEmotionCache(
   ({ children, title }: DocumentProps, emotionCache) => {
     const clientStyleData = useContext(ClientStyleContext);
     const settings = useSettings();
-    const googleTrackingId = settings.configs?.googleTrackingId;
 
     const location = useLocation();
 
     useEffect(() => {
-      googleTrackingId && gtag.pageview(location.pathname, googleTrackingId);
+      if (process.env.NODE_ENV !== "development") {
+        settings?.analytics?.page({ url: location.pathname });
+      }
     }, [location]);
 
     // Only executed on client
@@ -103,29 +103,6 @@ const Document = withEmotionCache(
           />
         </head>
         <body>
-          {process.env.NODE_ENV === "development" ? null : (
-            <>
-              {/* <script
-                async
-                src={`https://www.googletagmanager.com/gtag/js?id=${googleTrackingId}`}
-              /> */}
-              <script
-                async
-                id="gtag-init"
-                dangerouslySetInnerHTML={{
-                  __html: `
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', '${googleTrackingId}', {
-                  page_path: window.location.pathname,
-                });
-              `,
-                }}
-              />
-            </>
-          )}
-
           {children}
           <ScrollRestoration />
           <Scripts />
