@@ -12,6 +12,7 @@ export default function Media({ node }: MediaProps) {
           width: "100%",
           display: "block",
         },
+        "& img": { width: "100%", height: "auto" },
       }}
     >
       {domToReact(children)}
