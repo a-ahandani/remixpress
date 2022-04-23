@@ -4,7 +4,7 @@ import { useFetcher } from "remix";
 import { isFunction, keyBy } from "lodash";
 import Analytics, { AnalyticsInstance } from "analytics";
 //@ts-ignore
-import googleAnalytics from "@analytics/google-analytics";
+import googleTagManager from "@analytics/google-tag-manager";
 import type { SettingsProviderProps } from "./types";
 import type { Settings } from "~/types";
 
@@ -22,21 +22,22 @@ function SettingsProvider(props: SettingsProviderProps) {
     }
   }, [settings]);
 
-  const googleTrackingId = defaultSettings?.configs?.googleTrackingId;
+  const googleTagManagerId = defaultSettings?.configs?.googleTagManagerId;
+
   const ga = useRef<AnalyticsInstance>();
 
   const analytics = useMemo(() => {
-    if (!ga.current && googleTrackingId) {
+    if (!ga.current) {
       ga.current = Analytics({
         plugins: [
-          googleAnalytics({
-            trackingId: googleTrackingId,
+          googleTagManager({
+            containerId: googleTagManagerId,
           }),
         ],
       });
     }
     return ga.current;
-  }, [googleTrackingId]);
+  }, [googleTagManagerId]);
 
   const settingsContext = useMemo(() => {
     return {
