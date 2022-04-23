@@ -105,10 +105,10 @@ const Document = withEmotionCache(
         <body>
           {process.env.NODE_ENV === "development" ? null : (
             <>
-              <script
+              {/* <script
                 async
                 src={`https://www.googletagmanager.com/gtag/js?id=${googleTrackingId}`}
-              />
+              /> */}
               <script
                 async
                 id="gtag-init"
