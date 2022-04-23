@@ -1,9 +1,13 @@
 import { Typography } from "@mui/material";
 import { domToReact } from "html-react-parser";
+import { kebabCase } from "lodash";
 import { BLOCK_KEYS } from "~/components/Content/components/Body";
 
-import type { ImageProps } from "./types";
-export default function Image({ node }: ImageProps) {
+import type { HeadingProps } from "./types";
+export default function Heading({
+  node,
+  disableId = ["p", "h6", "h5"],
+}: HeadingProps) {
   const { children, name } = node;
 
   const BLOCK_VARIANTS: {
@@ -17,10 +21,11 @@ export default function Image({ node }: ImageProps) {
     [BLOCK_KEYS.H6]: "h6",
     [BLOCK_KEYS.P]: "body1",
   };
-
+  const content = domToReact(children) as string;
+  const id = !disableId.includes(name) ? kebabCase(content) : undefined;
   return (
-    <Typography variant={BLOCK_VARIANTS[name]}>
-      {domToReact(children)}
+    <Typography id={id} variant={BLOCK_VARIANTS[name]}>
+      {content}
     </Typography>
   );
 }
