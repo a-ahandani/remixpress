@@ -1,5 +1,4 @@
-import { ReactNode } from "react";
-import { LinkProps } from "remix";
-import { LinkProps as MuiLinkProps } from "@mui/material";
+import type { LinkProps } from "@remix-run/react";
+import type { LinkProps as MuiLinkProps } from "@mui/material";
 
 export type NavLinkProps = LinkProps & MuiLinkProps & {};

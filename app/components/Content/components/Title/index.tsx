@@ -1,5 +1,5 @@
 import { Typography } from "@mui/material";
-import { Link } from "remix";
+import { Link } from "@remix-run/react";
 
 import type { TitleProps } from "./types";
 export default function Title({ children, to, sx, ...rest }: TitleProps) {

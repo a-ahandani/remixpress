@@ -1,5 +1,5 @@
-import { useLoaderData } from "remix";
-import type { LoaderFunction } from "remix";
+import { useLoaderData } from "@remix-run/react";
+import type { LoaderFunction } from "@remix-run/node";
 import { getNode } from "~/api/getNode";
 import type { Node } from "~/types";
 import Body from "~/components/Content/components/Body";

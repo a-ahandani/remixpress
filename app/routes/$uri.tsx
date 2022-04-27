@@ -1,5 +1,9 @@
-import { useLoaderData } from "remix";
-import type { LoaderFunction, ActionFunction, MetaFunction } from "remix";
+import { useLoaderData } from "@remix-run/react";
+import type {
+  LoaderFunction,
+  ActionFunction,
+  MetaFunction,
+} from "@remix-run/node";
 import { getNode } from "~/api/getNode";
 import type { Node } from "~/types";
 import { createComment } from "~/api/createComment";
@@ -13,7 +17,8 @@ import Body from "~/components/Content/components/Body";
 import useSettings from "~/components/Settings/hooks/use-settings-context";
 import BackToBlog from "~/components/Content/components/BackToBlog";
 
-export const meta: MetaFunction = ({ data }: { data: Node }, ...a) => {
+export const meta: MetaFunction = ({ data }: { data: Node }) => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const settings = useSettings();
   if (!data) {
     return {

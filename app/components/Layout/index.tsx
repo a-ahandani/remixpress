@@ -1,5 +1,5 @@
-import { ReactNode } from "react";
-import { useTransition } from "remix";
+import type { ReactNode } from "react";
+import { useTransition } from "@remix-run/react";
 import Logo from "~/components/Logo";
 import { useTheme } from "@mui/material/styles";
 import MenuButton from "~/components/Menu/components/MenuButton";

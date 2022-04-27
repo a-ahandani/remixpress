@@ -1,6 +1,5 @@
 import { Box, Drawer, IconButton } from "@mui/material";
 import type { MenuProps } from "./types";
-import { Link } from "remix";
 import Navigation from "~/components/Menu/components/Navigation";
 import useLayout from "~/components/Layout/hooks/use-layout-context";
 import useSettings from "~/components/Settings/hooks/use-settings-context";

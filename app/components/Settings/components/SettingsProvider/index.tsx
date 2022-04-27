@@ -1,8 +1,9 @@
 import { useMemo, useEffect, useRef } from "react";
 import SettingsContext from "~/components/Settings/context";
-import { useFetcher } from "remix";
+import { useFetcher } from "@remix-run/react";
 import { isFunction, keyBy } from "lodash";
-import Analytics, { AnalyticsInstance } from "analytics";
+import type { AnalyticsInstance } from "analytics";
+import Analytics from "analytics";
 //@ts-ignore
 import googleTagManager from "@analytics/google-tag-manager";
 import type { SettingsProviderProps } from "./types";
@@ -20,7 +21,7 @@ function SettingsProvider(props: SettingsProviderProps) {
     if (!settings) {
       fetchSettings("/settings");
     }
-  }, [settings]);
+  }, [fetchSettings, settings]);
 
   const googleTagManagerId = defaultSettings?.configs?.googleTagManagerId;
 

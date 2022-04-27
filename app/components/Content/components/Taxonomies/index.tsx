@@ -1,5 +1,5 @@
 import { Chip } from "@mui/material";
-import { Link } from "remix";
+import { Link } from "@remix-run/react";
 
 import type { TaxonomiesProps } from "./types";
 export default function Taxonomies({ data, ChipProps }: TaxonomiesProps) {

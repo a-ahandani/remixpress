@@ -1,5 +1,5 @@
-import { Link as RmxLink } from "remix";
-import { Typography, Link, Skeleton } from "@mui/material";
+import { Link as RmxLink } from "@remix-run/react";
+import { Typography, Link } from "@mui/material";
 
 import useLayout from "~/components/Layout/hooks/use-layout-context";
 import useSettings from "~/components/Settings/hooks/use-settings-context";

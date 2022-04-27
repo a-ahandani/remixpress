@@ -1,4 +1,4 @@
-import { useTransition, useActionData, Form } from "remix";
+import { useTransition, useActionData, Form } from "@remix-run/react";
 import { useEffect, useRef, useState } from "react";
 import ReplyIcon from "@mui/icons-material/Reply";
 import CloseIcon from "@mui/icons-material/Close";

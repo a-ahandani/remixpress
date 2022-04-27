@@ -1,15 +1,16 @@
-import { ReactNode, useContext, useMemo, useEffect } from "react";
+import type { ReactNode } from "react";
+import { useContext, useMemo, useEffect } from "react";
 import {
+  useCatch,
+  useLoaderData,
   Links,
   LiveReload,
   Meta,
   Outlet,
   Scripts,
   ScrollRestoration,
-  useCatch,
-  useLoaderData,
-} from "remix";
-import type { MetaFunction } from "remix";
+} from "@remix-run/react";
+import type { MetaFunction } from "@remix-run/node";
 import { useNavigate, useLocation } from "react-router-dom";
 import { QueryParamProvider } from "use-query-params";
 import { withEmotionCache } from "@emotion/react";
@@ -34,6 +35,7 @@ export function links() {
 }
 
 export const meta: MetaFunction = () => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const settings = useSettings();
   const title = settings.configs?.siteTitle;
   const description = settings.configs?.description;
@@ -70,7 +72,7 @@ const Document = withEmotionCache(
       if (process.env.NODE_ENV !== "development") {
         settings?.analytics?.page();
       }
-    }, [location]);
+    }, [location, settings?.analytics]);
 
     // Only executed on client
     useEnhancedEffect(() => {

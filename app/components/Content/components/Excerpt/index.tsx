@@ -1,4 +1,4 @@
-import { Link as RmxLink } from "remix";
+import { Link as RmxLink } from "@remix-run/react";
 import { Box, IconButton, Badge } from "@mui/material";
 import CommentsDisabledIcon from "@mui/icons-material/CommentsDisabled";
 import { Link } from "@mui/material";

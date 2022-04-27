@@ -1,5 +1,5 @@
 import { Divider, Button } from "@mui/material";
-import { Link as RmxLink } from "remix";
+import { Link as RmxLink } from "@remix-run/react";
 import { ArrowBackOutlined } from "@mui/icons-material";
 import type { BackToBlogProps } from "./types";
 

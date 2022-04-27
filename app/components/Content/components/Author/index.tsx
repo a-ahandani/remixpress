@@ -1,6 +1,6 @@
 import { Box, Divider, Typography, Card, CardMedia, Link } from "@mui/material";
 import type { AuthorProps } from "./types";
-import { Link as RmxLink } from "remix";
+import { Link as RmxLink } from "@remix-run/react";
 
 export default function Author({ data }: AuthorProps) {
   return (

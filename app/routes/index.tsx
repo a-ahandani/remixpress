@@ -1,11 +1,11 @@
-import { useLoaderData } from "remix";
+import { useLoaderData } from "@remix-run/react";
 import { Box } from "@mui/material";
 import { getPosts } from "~/api/getPosts";
 import qs from "query-string";
 import Title from "~/components/Content/components/Title";
 
 import type { Query } from "~/types";
-import type { LoaderFunction } from "remix";
+import type { LoaderFunction } from "@remix-run/node";
 import type { Posts } from "~/api/getPosts";
 
 import Excerpt from "~/components/Content/components/Excerpt";
@@ -17,7 +17,7 @@ export const loader: LoaderFunction = async ({ request }) => {
   return getPosts(params);
 };
 
-export default function Posts() {
+export default function BlogPosts() {
   const { nodes, pageInfo } = useLoaderData<Posts>();
 
   return (

@@ -1,4 +1,4 @@
-import { Link as RmxLink } from "remix";
+import { Link as RmxLink } from "@remix-run/react";
 import { Link } from "@mui/material";
 import useLayout from "~/components/Layout/hooks/use-layout-context";
 

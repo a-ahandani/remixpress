@@ -1,4 +1,4 @@
-import type { LoaderFunction } from "remix";
+import type { LoaderFunction } from "@remix-run/node";
 import { getSettings } from "~/api/getSettings";
 
 export const loader: LoaderFunction = async () => {
