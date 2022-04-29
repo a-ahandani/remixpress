@@ -52,5 +52,5 @@ Create a `.env` file similar to [`.env.example`](https://github.com/leerob/leero
 
 ## Cloning / Forking
 
-- Feel free to take inspiration or copy the code directly!.
+- Feel free to take inspiration.
 - It is appreciated if you credit the author.
