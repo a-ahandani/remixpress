@@ -1,3 +1,4 @@
+
 # ahandani.com
 
 - **Framework**: [Remix](https://remix.run/)
@@ -38,6 +39,8 @@ Briefly, this is a presentation layer (built with awesome technologies like Reac
 ## How to make it yours
 
 There will be a couple of blog posts on how to create and customize this blog.
+
+ 1. [Creating a website with Remix.run, WordPress and GraphQl](https://ahandani.com/how-to-create-a-website-using-remix-run-wordpress-and-graphql/)
 
 ## Running Locally
 
