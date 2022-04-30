@@ -3,7 +3,7 @@ import { graphql } from "~/lib/graphql";
 import type { Settings } from "~/types";
 
 const GET_SETTINGS = gql`
-  query GetSettings {
+  query getSettings {
     allSettings {
       generalSettingsTitle
       generalSettingsLanguage

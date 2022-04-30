@@ -6,7 +6,7 @@ import { NODE } from "./queries";
 
 const GET_NODE = gql`
   ${NODE}
-  query GetNodeByUri($uri: String!) {
+  query getNodeByUri($uri: String!) {
     nodeByUri(uri: $uri) {
       __typename
       ...PostContent
