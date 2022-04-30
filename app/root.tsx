@@ -25,11 +25,17 @@ interface DocumentProps {
   children: ReactNode;
   title?: string;
 }
+
 export function links() {
   return [
     {
       rel: "stylesheet",
       href: "https://fonts.googleapis.com/css2?family=PT+Serif:wght@700&family=Poppins:wght@400;700&display=swap",
+    },
+    {
+      rel: "alternate",
+      type: "application/rss+xml",
+      href: "https://blog.ahandani.com/feed/",
     },
   ];
 }
