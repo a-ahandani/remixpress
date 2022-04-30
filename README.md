@@ -1,14 +1,12 @@
 
-# ahandani.com
+# RemixPress
 
 - **Framework**: [Remix](https://remix.run/)
 - **UI Framework**: [MUI](https://mui.com/)
-- **Content**: [Wordpress](https://wordpress.org/)
-- **Deployment**: [Vercel](https://vercel.com)
 
 ## Overview
 
-Briefly, this is a presentation layer (built with awesome technologies like React, Remix, and GraphQL) that uses WordPress as headless CMS.
+Briefly, this is a presentation layer (built with awesome technologies like React, Remix, and GraphQL) that uses WordPress as headless CMS. First I created it for my own website (ahandani.com), but it's easily customizable and extensible for your needs.
 
 ## Features
 
